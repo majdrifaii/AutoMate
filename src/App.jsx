@@ -6,6 +6,8 @@ import './App.css'
 import Home from './Home'
 import Layout from './Layout';
 import { LanguageProvider } from './LanguageContext';
+import Service from './Service';
+import NotFound from './NotFound';
 
 function App() {
 
@@ -15,6 +17,8 @@ function App() {
       <Layout>
       <Routes>
         <Route path='/' element={<Home/>} />
+        <Route path='service/:name' element={<Service />} />
+        <Route path='*' element={<NotFound/>} />
       </Routes>
       </Layout>
     </Router>

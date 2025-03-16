@@ -2,12 +2,14 @@
 import React, { useState } from 'react';
 import Logo from './assets/autoMATE.png';
 import { useLanguage } from './LanguageContext';
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Layout = ({ children }) => {
   const { currentLang, setCurrentLang, isRTL, translations } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
+  const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false);
 
   return (
     <>
@@ -18,22 +20,52 @@ const Layout = ({ children }) => {
               <img src={Logo} alt="autoMATE" className="h-44" />
             </div>
             <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
-              {translations[currentLang].nav.map((item) => (
-                <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                <Link
+                  to={'/'}
                   className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
                 >
-                  {item}
-                </a>
-              ))}
+                  {currentLang === 'en' ? 'Home' : 'الرئيسية'}
+                </Link>
+
+                <div className='relative'>
+                <button
+                  className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
+                  onClick={() => setIsServiceDropdownOpen(!isServiceDropdownOpen)}
+                >
+                  {currentLang === 'en' ? 'Services' : 'الخدمات'}
+                </button>
+                {isServiceDropdownOpen && (
+                  <div
+                    className="absolute -left-5 mt-2 w-32 bg-white rounded-lg shadow-lg py-2 border border-gray-100 z-50"
+                    onMouseLeave={() => setIsServiceDropdownOpen(false)}
+                  >
+                    {translations[currentLang].services.map((service, index) => (
+                    <Link
+                    key={index}
+                    to={`/service/${service}`}
+                      onClick={() => {
+                        setIsServiceDropdownOpen(false);
+                      }}
+                      className={`block w-full text-left px-4 py-2 hover:bg-gray-50 hover:text-[#01C38D] transition-colors duration-200 cursor-pointer`}
+                    >
+                      {service}
+                    </Link>
+                    ))}
+                  </div>
+                )}
+                </div>
+
+
+
+
+
               <div className="relative">
                 <button
-                  className="flex items-center space-x-2 text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer !rounded-button"
+                  className="flex items-center space-x-2 text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer mx-5"
                   onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                 >
                   <span>{currentLang === 'en' ? 'ENG' : 'عربي'}</span>
-                  <i className={`fas fa-chevron-${isLangDropdownOpen ? 'up' : 'down'} text-sm transition-transform duration-200`}></i>
+                  {isLangDropdownOpen ? <FaChevronUp className='text-sm transition-transform duration-200' /> : <FaChevronDown className='text-sm transition-transform duration-200' />}
                 </button>
                 {isLangDropdownOpen && (
                   <div

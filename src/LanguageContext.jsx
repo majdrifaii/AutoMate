@@ -13,7 +13,6 @@ export const LanguageProvider = ({ children }) => {
 
   const translations = {
     en: {
-      nav: ['Home', 'Services'],
       footer: {
         quickLinks: 'Quick Links',
         contact: 'Contact',
@@ -27,10 +26,10 @@ export const LanguageProvider = ({ children }) => {
         consultationDesc: 'Our experts will analyze your business processes and design a custom automation strategy - No commitment required',
         bookButton: 'Book Free Consultation',
         exploreButton: 'Explore Our Services'
-      }
+      },
+      services: ['mobile', 'web', 'trash', 'marketing', 'trading']
     },
     ar: {
-      nav: ['الرئيسية', 'الخدمات'],
       footer: {
         quickLinks: 'روابط سريعة',
         contact: 'اتصل بنا',
@@ -44,7 +43,8 @@ export const LanguageProvider = ({ children }) => {
         consultationDesc: 'سيقوم خبراؤنا بتحليل عمليات عملك وتصميم استراتيجية أتمتة مخصصة - لا يلزم الالتزام',
         bookButton: 'احجز استشارة مجانية',
         exploreButton: 'استكشف خدماتنا'
-      }
+      },
+      services: ['موبايل', 'ويب', 'زبالة', 'تسويق', 'تداول']
     }
   };
 

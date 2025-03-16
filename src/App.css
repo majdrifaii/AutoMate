@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Alexandria:wght@100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 @theme{
     --color-dark: #282828;
@@ -7,4 +8,21 @@
     --color-primary: #5f7998;
     --color-secondary: #006699;
     --color-accent: #01c38d;
+
+    --font-rubik: "Rubik", sans-serif;
+    --font-alexandria: "Alexandria", sans-serif;
 }
+
+/* .rubik-<uniquifier> {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+  }
+
+  .alexandria-<uniquifier> {
+    font-family: "Alexandria", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+  } */
