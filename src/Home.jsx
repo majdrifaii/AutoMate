@@ -46,11 +46,11 @@ const Home = () => {
               <p className={`text-white/80 text-sm ${isRTL ? 'font-arabic' : ''}`}>{translations[currentLang].hero.consultationDesc}</p>
             </div>
             <div className={`flex flex-wrap gap-4 ${isRTL ? 'justify-end' : ''}`}>
-              <button className="bg-[#01C38D] hover:bg-[#00A677] text-white px-8 py-3 rounded-button transition-colors duration-200 cursor-pointer whitespace-nowrap">
+              <button className="bg-[#01C38D] hover:bg-[#00A677] text-white px-8 py-3 rounded-md transition-colors duration-200 cursor-pointer whitespace-nowrap">
                 <i className={`fas fa-calendar-check ${isRTL ? 'ml-2' : 'mr-2'}`}></i>
                 {translations[currentLang].hero.bookButton}
               </button>
-              <button className="bg-white text-[#0051B6] px-8 py-3 rounded-button transition-colors duration-200 hover:bg-gray-100 cursor-pointer whitespace-nowrap">
+              <button className="bg-white text-[#0051B6] px-8 py-3 rounded-md transition-colors duration-200 hover:bg-gray-100 cursor-pointer whitespace-nowrap">
                 {translations[currentLang].hero.exploreButton}
               </button>
             </div>
@@ -308,11 +308,11 @@ const Home = () => {
               </div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-              <button className="bg-white text-[#0051B6] px-8 py-4 rounded-button hover:bg-gray-100 transition-colors duration-200 text-lg font-semibold whitespace-nowrap">
+              <button className="bg-white text-[#0051B6] px-6 py-4 rounded-md hover:bg-gray-100 transition-colors duration-200 text-lg font-semibold whitespace-nowrap cursor-pointer">
                 <i className={`fas fa-calendar-check ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`}></i>
                 {currentLang === 'ar' ? 'احجز استشارة مجانية' : 'Book a Free Consultant'}
               </button>
-              <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-button hover:bg-white/10 transition-colors duration-200 text-lg font-semibold whitespace-nowrap">
+              <button className="bg-transparent border-2 border-white text-white px-6 py-4 rounded-md hover:bg-white/10 transition-colors duration-200 text-lg font-semibold whitespace-nowrap cursor-pointer">
                 <i className={`fas fa-phone-alt ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`}></i>
                 {currentLang === 'ar' ? 'اتصل بالمبيعات' : 'Contact Sales'}
               </button>
