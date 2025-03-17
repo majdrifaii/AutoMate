@@ -107,18 +107,37 @@ const Layout = ({ children }) => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="md:hidden fixed top-20 left-0 right-0 bg-white z-40 border-b border-gray-200">
-          <div className="px-4 py-2">
-            {translations[currentLang].nav.map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="block py-3 text-gray-700 hover:text-[#01C38D] transition-colors duration-200 cursor-pointer"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item}
-              </a>
-            ))}
-            <div className="py-3 border-t border-gray-100">
+          <div className="py-5">
+              <Link
+                  to={'/'}
+                  className="w-full block py-4 text-gray-700 hover:text-[#01C38D] hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
+                >
+                  {currentLang === 'en' ? 'Home' : 'الرئيسية'}
+                </Link>
+                <button
+                  className="w-full block py-4 text-left text-gray-700 hover:text-[#01C38D] hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
+                  onClick={() => setIsServiceDropdownOpen(!isServiceDropdownOpen)}
+                >
+                  {currentLang === 'en' ? 'Services' : 'الخدمات'}
+                </button>
+                {isServiceDropdownOpen && (
+                  <>
+                  {translations[currentLang].services.map((service, index) => (
+                    <Link
+                    key={index}
+                    to={`/service/${service}`}
+                      onClick={() => {
+                        setIsServiceDropdownOpen(false);
+                        setIsMenuOpen(false)
+                      }}
+                      className={`block w-full text-left px-10 py-2 hover:bg-gray-50 hover:text-[#01C38D] transition-colors duration-200 cursor-pointer`}
+                    >
+                      {service}
+                    </Link>
+                    ))}
+                  </>
+                )}
+            <div className="py-3 px-4 border-t border-gray-100">
               <div className="flex items-center justify-between">
                 <span className="text-gray-700">Language</span>
                 <div className="flex space-x-4">

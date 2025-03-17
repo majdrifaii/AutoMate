@@ -3,30 +3,54 @@
       "id": 1,
       "name": "Web",
       "description": "Custom website design and development tailored to your business needs, including responsive layouts and modern frameworks.",
-      "image": "https://example.com/images/web-development.jpg"
+      "image": "https://picsum.photos/200"
     },
     {
       "id": 2,
       "name": "Trading",
       "description": "Creative graphic design services for logos, branding, marketing materials, and digital assets.",
-      "image": "https://example.com/images/graphic-design.jpg"
+      "image": "https://picsum.photos/200"
     },
     {
       "id": 3,
       "name": "Marketing",
       "description": "Secure and scalable cloud hosting solutions to keep your applications running smoothly with 99.9% uptime.",
-      "image": "https://example.com/images/cloud-hosting.jpg"
+      "image": "https://picsum.photos/200"
     },
     {
       "id": 4,
       "name": "Trash",
       "description": "Search engine optimization to boost your website’s visibility and rank higher on Google and other search engines.",
-      "image": "https://example.com/images/seo-optimization.jpg"
+      "image": "https://picsum.photos/200"
     },
     {
       "id": 5,
       "name": "Mobile",
       "description": "Build native or cross-platform mobile applications for iOS and Android with a focus on user experience.",
-      "image": "https://example.com/images/mobile-app-development.jpg"
+      "image": "https://picsum.photos/200"
+    },
+    {
+      "id": 6,
+      "name": "Web",
+      "description": "Custom website design and development tailored to your business needs, including responsive layouts and modern frameworks.",
+      "image": "https://picsum.photos/200"
+    },
+    {
+      "id": 7,
+      "name": "Trading",
+      "description": "Creative graphic design services for logos, branding, marketing materials, and digital assets.",
+      "image": "https://picsum.photos/200"
+    },
+    {
+      "id": 8,
+      "name": "Marketing",
+      "description": "Secure and scalable cloud hosting solutions to keep your applications running smoothly with 99.9% uptime.",
+      "image": "https://picsum.photos/200"
+    },
+    {
+      "id": 9,
+      "name": "Trash",
+      "description": "Search engine optimization to boost your website’s visibility and rank higher on Google and other search engines.",
+      "image": "https://picsum.photos/200"
     }
   ]
