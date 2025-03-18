@@ -1,31 +1,63 @@
 // Layout.jsx
-import React, { useState } from 'react';
-import Logo from './assets/autoMATE.png';
+import React, { useRef, useState } from 'react';
+import Logo from '../public/icon/autoMATE.png';
 import { useLanguage } from './LanguageContext';
-import { FaBars, FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaChevronUp, FaChevronDown, FaFacebook, FaInstagram, FaLinkedin, FaPen, FaBullhorn, FaRobot, FaShareAlt, FaClipboardList, FaCode } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Layout = ({ children }) => {
-  const { currentLang, setCurrentLang, isRTL, translations } = useLanguage();
+  const { currentLang, setCurrentLang, isRTL, translations, scrollToAbout} = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false);
+  const contactRef = useRef(null);
+
+  const scrollToContact = () => {
+    contactRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const serviceIcons = {
+    'Content Creation': <FaPen className="inline w-5 h-5 mr-2" />,
+    'إنشاء المحتوى': <FaPen className="inline w-5 h-5 mr-2" />,
+    'Marketing Campaigns': <FaBullhorn className="inline w-5 h-5 mr-2" />,
+    'حملات تسويقية': <FaBullhorn className="inline w-5 h-5 mr-2" />,
+    'AI Customer Service Bot': <FaRobot className="inline w-5 h-5 mr-2" />,
+    'روبوت خدمة العملاء الذكي': <FaRobot className="inline w-5 h-5 mr-2" />,
+    'Social Media Management': <FaShareAlt className="inline w-5 h-5 mr-2" />,
+    'إدارة وسائل التواصل الاجتماعي': <FaShareAlt className="inline w-5 h-5 mr-2" />,
+    'Startup Business Plans': <FaClipboardList className="inline w-5 h-5 mr-2" />,
+    'خطط الأعمال للشركات الناشئة': <FaClipboardList className="inline w-5 h-5 mr-2" />,
+    'Web Development': <FaCode className="inline w-5 h-5 mr-2" />,
+    'تطوير المواقع الإلكترونية': <FaCode className="inline w-5 h-5 mr-2" />,
+  };
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100">
+      <header className={`fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             <div className="flex items-center">
               <img src={Logo} alt="autoMATE" className="h-44" />
             </div>
-            <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-8'}`}>
+            <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-10'}`}>
                 <Link
                   to={'/'}
                   className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
                 >
                   {currentLang === 'en' ? 'Home' : 'الرئيسية'}
                 </Link>
+                <button
+                  className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
+                  onClick={scrollToContact}
+                >
+                  {currentLang === 'en' ? 'Contact Us' : 'اتصل بنا'}
+                </button>
+                <button
+                  className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
+                  onClick={scrollToAbout}
+                >
+                  {currentLang === 'en' ? 'About Us' : 'من نحن'}
+                </button>
 
                 <div className='relative'>
                 <button
@@ -36,8 +68,8 @@ const Layout = ({ children }) => {
                 </button>
                 {isServiceDropdownOpen && (
                   <div
-                    className="absolute -left-5 mt-2 w-32 bg-white rounded-lg shadow-lg py-2 border border-gray-100 z-50"
-                    onMouseLeave={() => setIsServiceDropdownOpen(false)}
+                    className="absolute -left-28 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 border border-gray-100 z-50"
+                    // onMouseLeave={() => setIsServiceDropdownOpen(false)}
                   >
                     {translations[currentLang].services.map((service, index) => (
                     <Link
@@ -46,8 +78,9 @@ const Layout = ({ children }) => {
                       onClick={() => {
                         setIsServiceDropdownOpen(false);
                       }}
-                      className={`block w-full text-left px-4 py-2 hover:bg-gray-50 hover:text-[#01C38D] transition-colors duration-200 cursor-pointer`}
+                      className={`block w-full text-left px-4 py-3 hover:bg-gray-50 hover:text-[#01C38D] transition-colors duration-200 cursor-pointer`}
                     >
+                      {serviceIcons[service]}
                       {service}
                     </Link>
                     ))}
@@ -106,7 +139,7 @@ const Layout = ({ children }) => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden fixed top-20 left-0 right-0 bg-white z-40 border-b border-gray-200">
+        <div className={`md:hidden fixed top-20 left-0 right-0 bg-white z-40 border-b border-gray-200 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`}>
           <div className="py-5">
               <Link
                   to={'/'}
@@ -132,6 +165,7 @@ const Layout = ({ children }) => {
                       }}
                       className={`block w-full text-left px-10 py-2 hover:bg-gray-50 hover:text-[#01C38D] transition-colors duration-200 cursor-pointer`}
                     >
+                      {serviceIcons[service]}
                       {service}
                     </Link>
                     ))}
@@ -168,7 +202,7 @@ const Layout = ({ children }) => {
 
       <main className="">{children}</main>
 
-      <footer className="bg-[#0051B6] text-white py-16">
+      <footer className={`bg-[#0051B6] text-white py-16 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`} ref={contactRef}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
@@ -182,7 +216,7 @@ const Layout = ({ children }) => {
                 {translations[currentLang].footer.quickLinks}
               </h3>
               <ul className="space-y-2">
-                {(currentLang === 'ar' ? ['الرئيسية', 'الخدمات', 'المشاريع', 'من نحن', 'اتصل بنا'] : ['Home', 'Services', 'Portfolio', 'About Us', 'Contact']).map((item, index) => (
+                {(currentLang === 'ar' ? ['الرئيسية', 'الخدمات'] : ['Home', 'Services']).map((item, index) => (
                   <li key={index}>
                     <a
                       href={`#${item.toLowerCase()}`}
@@ -217,16 +251,25 @@ const Layout = ({ children }) => {
               <h3 className={`text-xl font-bold mb-4 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
                 {translations[currentLang].footer.followUs}
               </h3>
-              <div className={`flex ${currentLang === 'ar' ? 'space-x-reverse' : 'space-x-4'}`}>
-                {['facebook', 'twitter', 'linkedin', 'instagram'].map((social) => (
+              <div className="flex space-x-6">
                   <a
-                    key={social}
-                    href={`#${social}`}
+                    href=''
                     className="text-white hover:text-[#01C38D] transition-colors duration-200 cursor-pointer"
                   >
-                    <i className={`fab fa-${social} text-2xl`}></i>
+                    <FaFacebook className="text-2xl" />
                   </a>
-                ))}
+                  <a
+                    href=""
+                    className="text-white hover:text-[#01C38D] transition-colors duration-200 cursor-pointer"
+                  >
+                    <FaInstagram className="text-2xl" />
+                  </a>
+                  <a
+                    href=""
+                    className="text-white hover:text-[#01C38D] transition-colors duration-200 cursor-pointer"
+                  >
+                    <FaLinkedin className="text-2xl" />
+                  </a>
               </div>
             </div>
           </div>

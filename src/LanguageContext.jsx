@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useRef } from 'react';
 import Robot from './assets/Robot.png';
 import Manage from './assets/Manage.png';
 import Content from './assets/Content.png';
@@ -10,6 +10,11 @@ const LanguageContext = createContext();
 export const LanguageProvider = ({ children }) => {
   const [currentLang, setCurrentLang] = useState('en');
   const isRTL = currentLang === 'ar';
+  const AboutRef = useRef(null);
+
+  const scrollToAbout = () => {
+    AboutRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const translations = {
     en: {
@@ -20,14 +25,14 @@ export const LanguageProvider = ({ children }) => {
         description: 'Transforming businesses through intelligent automation and AI solutions.',
       },
       hero: {
-        title: 'Let the work be done autoMATE',
+        title: 'Let the work be done by autoMATE',
         subtitle: 'Empower your business with cutting-edge AI and automation solutions that drive efficiency and innovation.',
         consultation: 'Get a FREE personalized automation consultation',
         consultationDesc: 'Our experts will analyze your business processes and design a custom automation strategy - No commitment required',
         bookButton: 'Book Free Consultation',
         exploreButton: 'Explore Our Services'
       },
-      services: ['mobile', 'web', 'trash', 'marketing', 'trading']
+      services: ['Content Creation', 'Marketing Campaigns', 'AI Customer Service Bot', 'Social Media Management', 'Startup Business Plans', 'Web Development']
     },
     ar: {
       footer: {
@@ -44,7 +49,7 @@ export const LanguageProvider = ({ children }) => {
         bookButton: 'احجز استشارة مجانية',
         exploreButton: 'استكشف خدماتنا'
       },
-      services: ['موبايل', 'ويب', 'زبالة', 'تسويق', 'تداول']
+      services: ['إنشاء المحتوى', 'حملات تسويقية', 'روبوت خدمة العملاء الذكي', 'إدارة وسائل التواصل الاجتماعي', 'خطط الأعمال للشركات الناشئة', 'تطوير المواقع الإلكترونية']
     }
   };
 
@@ -66,45 +71,60 @@ export const LanguageProvider = ({ children }) => {
     }
   ];
 
-  const portfolioSlides = [
-    {
-      title: 'Enterprise AI Integration',
-      description: 'Implemented AI-driven analytics for Fortune 500 company',
-      image: 'https://public.readdy.ai/ai/img_res/29ed0293f5959ad198b5c0c8f3d06345.jpg'
-    },
-    {
-      title: 'Smart Factory Automation',
-      description: 'Reduced operational costs by 40% through intelligent automation',
-      image: 'https://public.readdy.ai/ai/img_res/bdef1af01cb1bc5ed6a1fde946a1ee3f.jpg'
-    },
-    {
-      title: 'Data Processing Optimization',
-      description: 'Streamlined data processing for major financial institution',
-      image: 'https://public.readdy.ai/ai/img_res/4a65c734ed3b5030f1156ffe0eef7294.jpg'
-    }
-  ];
+  const portfolioSlides = {
+    "en": [
+      "/src/assets/english portfolio/1.png", "/src/assets/english portfolio/2.png", "/src/assets/english portfolio/3.png", "/src/assets/english portfolio/4.png", "/src/assets/english portfolio/5.png"
+    ],
+    "ar": [
+      "/src/assets/arabic portfolio/1.png", "/src/assets/arabic portfolio/2.png", "/src/assets/arabic portfolio/3.png", "/src/assets/arabic portfolio/4.png", "/src/assets/arabic portfolio/5.png"
+    ]
+  }
 
-  const faqs = [
-    {
-      question: 'What services does autoMATE offer?',
-      answer: 'We provide comprehensive AI and automation solutions including process automation, machine learning implementation, and custom AI development for enterprises.'
-    },
-    {
-      question: 'How can automation benefit my business?',
-      answer: 'Automation can significantly reduce operational costs, improve efficiency, minimize errors, and allow your team to focus on strategic tasks rather than repetitive processes.'
-    },
-    {
-      question: 'What industries do you serve?',
-      answer: 'We serve a wide range of industries including manufacturing, finance, healthcare, retail, and technology sectors with customized automation solutions.'
-    },
-    {
-      question: 'How long does implementation typically take?',
-      answer: 'Implementation timeline varies based on project scope, typically ranging from 2-6 months. We ensure minimal disruption to your existing operations.'
-    }
-  ];
+  const faqs = {
+    "en": [
+      {
+        question: 'What services does autoMATE offer?',
+        answer: 'We provide comprehensive AI and automation solutions including process automation, machine learning implementation, and custom AI development for enterprises.'
+      },
+      {
+        question: 'How can automation benefit my business?',
+        answer: 'Automation can significantly reduce operational costs, improve efficiency, minimize errors, and allow your team to focus on strategic tasks rather than repetitive processes.'
+      },
+      {
+        question: 'What industries do you serve?',
+        answer: 'We serve a wide range of industries including manufacturing, finance, healthcare, retail, and technology sectors with customized automation solutions.'
+      },
+      {
+        question: 'How long does implementation typically take?',
+        answer: 'Implementation timeline varies based on project scope, typically ranging from 2-6 months. We ensure minimal disruption to your existing operations.'
+      }
+    ],
+    "ar": [
+      {
+        question: 'ما هي الخدمات التي تقدمها autoMATE؟',
+        answer:
+          'نقدم حلولاً شاملة للذكاء الاصطناعي والأتمتة تشمل أتمتة العمليات وتنفيذ التعلم الآلي وتطوير الذكاء الاصطناعي المخصص للمؤسسات.',
+      },
+      {
+        question: 'كيف يمكن للأتمتة أن تفيد عملي؟',
+        answer:
+          'يمكن للأتمتة أن تقلل بشكل كبير من تكاليف التشغيل وتحسن الكفاءة وتقلل الأخطاء وتسمح لفريقك بالتركيز على المهام الاستراتيجية بدلاً من العمليات المتكررة.',
+      },
+      {
+        question: 'ما هي القطاعات التي تخدمونها؟',
+        answer:
+          'نخدم مجموعة واسعة من القطاعات بما في ذلك التصنيع والمالية والرعاية الصحية والتجزئة وقطاعات التكنولوجيا مع حلول أتمتة مخصصة.',
+      },
+      {
+        question: 'كم من الوقت يستغرق التنفيذ عادةً؟',
+        answer:
+          'تختلف مدة التنفيذ بناءً على نطاق المشروع، وتتراوح عادةً بين 2-6 أشهر. نحن نضمن الحد الأدنى من التعطيل لعملياتك الحالية.',
+      }
+    ] 
+  };
 
   return (
-    <LanguageContext.Provider value={{ currentLang, setCurrentLang, isRTL, translations, whyChooseUsCards, portfolioSlides, faqs }}>
+    <LanguageContext.Provider value={{ currentLang, setCurrentLang, isRTL, translations, whyChooseUsCards, portfolioSlides, faqs, scrollToAbout, AboutRef }}>
       {children}
     </LanguageContext.Provider>
   );
