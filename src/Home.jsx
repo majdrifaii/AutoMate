@@ -10,7 +10,7 @@ import { motion } from 'framer-motion';
 import { FaCalendarCheck, FaPhoneAlt } from 'react-icons/fa';
 
 const Home = () => {
-  const { currentLang, isRTL, translations, whyChooseUsCards, portfolioSlides, faqs, AboutRef } = useLanguage();
+  const { currentLang, isRTL, translations, whyChooseUsCards, portfolioSlides, faqs } = useLanguage();
   const [activeAccordion, setActiveAccordion] = useState(null);
   const serviceRef = useRef(null);
   
@@ -24,14 +24,14 @@ const Home = () => {
 
   const Settings = {
     dots: true,
-    arrows: false,
+    arrows: true,
     infinite: true,
     speed: 1500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 4000,
-    pauseOnHover: false,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
   };
 
   return (
@@ -137,15 +137,7 @@ const Home = () => {
             {currentLang === 'ar' ? 'لماذا تختارنا' : 'Why Choose Us'}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            {(currentLang === 'ar' ? whyChooseUsCards.map(card => ({
-              ...card,
-              title: card.title === 'AI Expertise' ? 'خبرة الذكاء الاصطناعي' :
-                card.title === 'Custom Automation' ? 'أتمتة مخصصة' :
-                'نتائج مثبتة',
-              description: card.title === 'AI Expertise' ? 'حلول ذكاء اصطناعي متطورة مصممة خصيصاً لاحتياجات المؤسسات' :
-                card.title === 'Custom Automation' ? 'أتمتة سير العمل المبسطة المصممة لعملياتك التجارية المحددة' :
-                'زيادة الكفاءة بنسبة 95٪ لعملائنا من المؤسسات من خلال الأتمتة الذكية'
-            })) : whyChooseUsCards).map((card, index) => (
+            {whyChooseUsCards[currentLang].map((card, index) => (
               <div
                 key={index}
                 className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300"
@@ -172,22 +164,29 @@ const Home = () => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1 }}
       viewport={{ once: true }}
-      className="py-20" ref={AboutRef}>
-        <div className="w-11/12 mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16">About Us</h2>
-          <Slider {...Settings}>
-            {portfolioSlides[currentLang].map((slide, index) => (
-                <div className="rounded-lg" key={index}>
-                  <img
-                    src={slide}
-                    alt={index}
-                    className="mx-auto object-contain h-[500px] rounded-lg"
-                  />
-                </div>
-            ))}
-          </Slider>
-        </div>
-      </motion.section>
+      className="py-20"
+    >
+      <div className="w-11/12 mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-10">About Us</h2>
+        <Slider {...Settings}>
+          {portfolioSlides[currentLang].map((slide, index) => (
+            <div className="rounded-lg relative" key={index}>
+              {/* Text container above the image */}
+              <div className={`absolute top-10 w-1/4 ${index === 3 ? 'right-20' : 'left-20'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+                <h3 className="text-5xl text-white font-bold">{slide.title}</h3>
+                <p className={`text-white ${index === 3 ? 'text-2xl' : 'text-3xl'}`}>{slide.description}</p>
+              </div>
+              {/* Image */}
+              <img
+                src={slide.image}
+                alt={index} // Use title as alt text if available
+                className="w-full object-cover h-[500px] rounded-lg"
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
+    </motion.section>
       {/* Ready to Automate Section */}
       <motion.section 
       initial={{ opacity: 0, y: 50 }}

@@ -25,8 +25,8 @@ const Service = () => {
                 <img className="w-full object-cover rounded-md" src={service.image} alt={service.name} />
                 <div className="mt-4 md:mt-0">
                     <h1 className="mb-4 text-5xl tracking-tight font-extrabold text-gray-900">{service.name}</h1>
-                    {service.description.map((des) => (
-                        <p className="my-1.5 font-light text-gray-500 md:text-lg">{des}</p>
+                    {service.description.map((des, index) => (
+                        <p key={index} className="my-1.5 font-light text-gray-500 md:text-lg">{des}</p>
                     ))}
                     <button className="inline-flex items-center text-white bg-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer mt-5">
                     {currentLang === 'en' ? (

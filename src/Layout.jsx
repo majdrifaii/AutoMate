@@ -1,4 +1,3 @@
-// Layout.jsx
 import React, { useRef, useState } from 'react';
 import Logo from '../public/icon/autoMATE.png';
 import { useLanguage } from './LanguageContext';
@@ -6,7 +5,7 @@ import { FaBars, FaChevronUp, FaChevronDown, FaFacebook, FaInstagram, FaLinkedin
 import { Link } from 'react-router-dom';
 
 const Layout = ({ children }) => {
-  const { currentLang, setCurrentLang, isRTL, translations, scrollToAbout} = useLanguage();
+  const { currentLang, setCurrentLang, isRTL, translations} = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false);
@@ -36,9 +35,9 @@ const Layout = ({ children }) => {
       <header className={`fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            <div className="flex items-center">
-              <img src={Logo} alt="autoMATE" className="h-44" />
-            </div>
+            <Link to={'/'} className="flex items-center">
+              <img src={Logo} alt="autoMATE" className="h-50" />
+            </Link>
             <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-10'}`}>
                 <Link
                   to={'/'}
@@ -46,18 +45,12 @@ const Layout = ({ children }) => {
                 >
                   {currentLang === 'en' ? 'Home' : 'الرئيسية'}
                 </Link>
-                <button
+                <Link
+                  to={'/blogs'}
                   className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
-                  onClick={scrollToContact}
                 >
-                  {currentLang === 'en' ? 'Contact Us' : 'اتصل بنا'}
-                </button>
-                <button
-                  className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
-                  onClick={scrollToAbout}
-                >
-                  {currentLang === 'en' ? 'About Us' : 'من نحن'}
-                </button>
+                  {currentLang === 'en' ? 'Blogs' : 'مقالات'}
+                </Link>
 
                 <div className='relative'>
                 <button
@@ -87,6 +80,12 @@ const Layout = ({ children }) => {
                   </div>
                 )}
                 </div>
+                <button
+                  className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
+                  onClick={scrollToContact}
+                >
+                  {currentLang === 'en' ? 'Contact Us' : 'اتصل بنا'}
+                </button>
 
 
 
@@ -144,8 +143,16 @@ const Layout = ({ children }) => {
               <Link
                   to={'/'}
                   className="w-full block py-4 text-gray-700 hover:text-[#01C38D] hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
+                  onClick={() => setIsMenuOpen(false)}
                 >
                   {currentLang === 'en' ? 'Home' : 'الرئيسية'}
+                </Link>
+                <Link
+                  to={'/blogs'}
+                  className="w-full block py-4 text-gray-700 hover:text-[#01C38D] hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {currentLang === 'en' ? 'Blogs' : 'مقالات'}
                 </Link>
                 <button
                   className="w-full block py-4 text-left text-gray-700 hover:text-[#01C38D] hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
@@ -202,11 +209,11 @@ const Layout = ({ children }) => {
 
       <main className="">{children}</main>
 
-      <footer className={`bg-[#0051B6] text-white py-16 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`} ref={contactRef}>
+      <footer className={`bg-primary text-white text-center items-center py-16 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`} ref={contactRef}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <img src={Logo} alt="autoMATE" className="h-44 mb-6" />
+            <div className='flex flex-col justify-start items-center'>
+              <img src={Logo} alt="autoMATE" className="h-56 mb-3" />
               <p className={`text-gray-300 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
                 {translations[currentLang].footer.description}
               </p>
@@ -251,24 +258,24 @@ const Layout = ({ children }) => {
               <h3 className={`text-xl font-bold mb-4 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
                 {translations[currentLang].footer.followUs}
               </h3>
-              <div className="flex space-x-6">
+              <div className="flex justify-center items-center space-x-10 mt-10">
                   <a
                     href=''
                     className="text-white hover:text-[#01C38D] transition-colors duration-200 cursor-pointer"
                   >
-                    <FaFacebook className="text-2xl" />
+                    <FaFacebook className="text-3xl" />
                   </a>
                   <a
                     href=""
                     className="text-white hover:text-[#01C38D] transition-colors duration-200 cursor-pointer"
                   >
-                    <FaInstagram className="text-2xl" />
+                    <FaInstagram className="text-3xl" />
                   </a>
                   <a
                     href=""
                     className="text-white hover:text-[#01C38D] transition-colors duration-200 cursor-pointer"
                   >
-                    <FaLinkedin className="text-2xl" />
+                    <FaLinkedin className="text-3xl" />
                   </a>
               </div>
             </div>

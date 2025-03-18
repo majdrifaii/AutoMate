@@ -5,42 +5,42 @@
       "name": "Content Creation",
       "title" : "AI-powered content creation and optimization for engaging, SEO-friendly digital content.",
       "description": ["Do you struggle to create content that reflects your company’s professionalism and identity?", "With autoMATE, content creation has become easier and more innovative than ever before.", "We offer: Professional Product Photography: Highlighting the features of your products and presenting them in the best light on social media.", "Comprehensive Digital Content Design: From daily posts to short videos and even professional long-form video production.", "Innovative and Captivating Advertisements: Using designs that blend reality and imagination to create unforgettable ads. ", "Showcasing Your Brand Identity: Crafting content that mirrors your brand's personality and attracts your target audience. ", "At autoMATE, we transform your ideas into inspiring content that boosts your digital presence.", "Let’s bring your vision to life!"],
-      "image": "/src/assets/Content.png"
+      "image": "/src/assets/Services/Content.png"
     },
     {
       "id": 2,
       "name": "Marketing Campaigns",
       "title" : "Data-driven marketing strategies with AI-powered targeting and optimization for maximum ROI.",
       "description": ["Are you trying to position your business where it truly deserves to be?", "At autoMATE, we provide a comprehensive range of marketing solutions tailored to meet your business needs, including: Target Audience Analysis: Ensuring effective reach to your ideal customers.", "In-Depth Market Research: Exploring opportunities and crafting well-informed plans. " ,"Innovative Strategy Development: Enhancing your presence and boosting your brand's impact. ", "Digital Marketing Campaign Management: Leveraging the latest technologies for tangible results. ", "Performance Monitoring and Evaluation: Continuously refining strategies to meet your goals effectively. ", "With autoMATE, we elevate your business towards leadership and expansion. ", "Let’s turn your ambitions into reality!"],
-      "image": "/src/assets/Manage.png"
+      "image": "/src/assets/Services/Manage.png"
     },
     {
       "id": 3,
       "name": "AI Customer Service Bot",
       "title" : "24/7 intelligent customer support with natural language processing and seamless integration capabilities.",
       "description": ["Discover the Ultimate Solution to Enhance User Experience and Reduce Operational Costs! The AI-Powered Chatbot is the perfect choice for your business needs.", "Key Features: Fully Customizable: Tailor the chatbot to suit the unique demands of any business. ", "High Flexibility: Adapt effortlessly as your business evolves. ", "24/7 Availability: Always there to respond without interruptions. ", "Exceptional User Experience: Provides customers with an entirely new level of interaction.", "Error-Free Performance: Ensuring top-notch accuracy and efficiency.", "Multilingual Support: Communicate in any language to serve a diverse audience."],
-      "image": "/src/assets/Robot.png"
+      "image": "/src/assets/Services/Robot.png"
     },
     {
       "id": 4,
       "name": "Social Media Management",
       "title" : "Comprehensive social media strategy with AI-powered content scheduling and engagement analytics.",
       "description": ["Do you find it challenging to understand social media algorithms? Struggling to post engaging content and interact with your customers?", "At autoMATE, we provide the perfect solutions to make social media account management efficient and exceptional: Comprehensive Account Management: Ensuring a strong and well-coordinated presence across various platforms. ", "Customized and Continuous Customer Interaction: Building lasting relationships with your current audience and attracting potential customers. ", " Accurate Performance Analysis: Tracking and analyzing results to refine your strategies effectively.", "Utilizing the Latest Digital Tools: Achieving optimal results with minimal effort.", "Seamless Content Scheduling and Management: Ensuring consistent engagement without interruptions.", "With autoMATE, social media account management goes beyond posting—it becomes a powerful tool for building your digital success and achieving your marketing goals."],
-      "image": "/src/assets/socialMedia.png"
+      "image": "/src/assets/Services/socialMedia.png"
     },
     {
       "id": 5,
       "name": "Startup Business Plans",
       "title" : "Strategic business planning with AI-driven market analysis and insights for startups.",
       "description": ["Turn Your Idea into Reality with autoMATE Do you have an innovative idea and dream of transforming it into a successful business?", "At autoMATE, we specialize in turning your vision into a tangible and profitable reality through comprehensive solutions that include: Thorough Idea Analysis: Evaluating your concept from all angles to ensure its feasibility and quality.", "In-Depth Market and Competitor Research: Identifying opportunities and crafting strategies to help your business stand out.", "Comprehensive Business Planning: Covering all essential elements, from infrastructure to marketing. ", "Incorporating Cutting-Edge Technology: Leveraging the latest digital solutions for your project's success.", "Evaluating Project Viability: Using advanced tools to ensure sustainability and profitability.", "Continuous Support and Guidance: Managing all aspects of your business to guarantee growth and success. ", "With autoMATE, we help turn your ideas into successful, enduring ventures. Success begins with a single step—let’s take it together!"],
-      "image": "/src/assets/startup plan.png"
+      "image": "/src/assets/Services/startup plan.png"
     },
     {
       "id": 6,
       "name": "Web Development",
       "title" : "Custom web solutions with responsive design and advanced functionality for modern businesses.",
       "description": ["Is your presence on social media not meeting your ambitions?", "At autoMATE, we offer professional website design services tailored to your business and aligned with your brand’s visual identity.","Our services include: Innovative and Attractive Design: Reflecting your brand and creating a lasting impression on your audience.", "Enhanced User Experience: Ensuring seamless navigation and a unique browsing experience.", "Fully Customized Websites: Meeting your needs, goals, and the requirements of your customers.","Integration with Social Media Platforms: Presenting your brand consistently across all digital channels.", "High-Performance Technical Features: Fast loading speeds and advanced security measures for the safety of your data and your clients’.", "24/7 Technical Support: Ensuring your website operates smoothly without any interruptions.", "With autoMATE, your website becomes more than just a platform—it’s a powerful tool for achieving digital success.", "Let us help you stand out!"], 
-      "image": "/src/assets/web dev.png"
+      "image": "/src/assets/Services/web dev.png"
     }
   ],
   "ar": [
@@ -58,7 +58,7 @@
   "مع أوتوميت، نقوم بتحويل أفكارك إلى محتوى يلهم العملاء ويعزز من تواجدك الرقمي.",
   "دعنا نساعدك على تحقيق رؤيتك!"
 ],
-      "image": "/src/assets/Content.png"
+      "image": "/src/assets/Services/Content.png"
     },
     {
       "id": 2,
@@ -75,7 +75,7 @@
   "مع أوتوميت، ندفع بعملك نحو الريادة والتوسع.",
   "دعنا نجعل من طموحاتك واقعًا ملموسًا!"
 ],
-      "image": "/src/assets/Manage.png"
+      "image": "/src/assets/Services/Manage.png"
     },
     {
       "id": 3,
@@ -92,7 +92,7 @@
   "خلو من الأخطاء: كفاءة ودقة لا تضاهى.",
   "دعم لغوي شامل: يعمل بلغات متعددة لتلبية جميع احتياجاتك."
 ],
-      "image": "/src/assets/Robot.png"
+      "image": "/src/assets/Services/Robot.png"
     },
     {
       "id": 4,
@@ -109,7 +109,7 @@
   "جدولة المحتوى وإدارته بسلاسة: ضمان تواجدك المستمر بدون انقطاع.",
   "مع أوتوميت، لن تقتصر إدارة حساباتك على النشر فقط، بل ستصبح أداة فعّالة لبناء نجاحك الرقمي وتحقيق أهدافك التسويقية."
 ],
-      "image": "/src/assets/socialMedia.png"
+      "image": "/src/assets/Services/socialMedia.png"
     },
     {
       "id": 5,
@@ -127,7 +127,7 @@
   "مع أوتوميت، نساعدك على تحويل أفكارك إلى مشاريع حقيقية ومستدامة.",
   "النجاح يبدأ بخطوة، دعنا نأخذها معًا!"
 ],
-      "image": "/src/assets/startup plan.png"
+      "image": "/src/assets/Services/startup plan.png"
     },
     {
       "id": 6,
@@ -146,7 +146,7 @@
   "مع أوتوميت، انتقل بموقعك الإلكتروني من مجرد منصة إلى أداة فعّالة لتحقيق النجاح الرقمي.",
   "دعنا نساعدك على التميز!"
 ],
-      "image": "/src/assets/web dev.png"
+      "image": "/src/assets/Services/web dev.png"
     }
   ]
 }
