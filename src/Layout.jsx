@@ -67,7 +67,7 @@ const Layout = ({ children }) => {
                     {translations[currentLang].services.map((service, index) => (
                     <Link
                     key={index}
-                    to={`/service/${service}`}
+                    to={`/service/${service}/${index + 1}`}
                       onClick={() => {
                         setIsServiceDropdownOpen(false);
                       }}
@@ -138,7 +138,7 @@ const Layout = ({ children }) => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className={`md:hidden fixed top-20 left-0 right-0 bg-white z-40 border-b border-gray-200 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`}>
+        <div className={`md:hidden fixed top-20 left-0 right-0 bg-white z-50 border-b border-gray-200 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`}>
           <div className="py-5">
               <Link
                   to={'/'}
@@ -165,7 +165,7 @@ const Layout = ({ children }) => {
                   {translations[currentLang].services.map((service, index) => (
                     <Link
                     key={index}
-                    to={`/service/${service}`}
+                    to={`/service/${service}/${index + 1}`}
                       onClick={() => {
                         setIsServiceDropdownOpen(false);
                         setIsMenuOpen(false)
@@ -209,7 +209,7 @@ const Layout = ({ children }) => {
 
       <main className="">{children}</main>
 
-      <footer className={`bg-primary text-white text-center items-center py-16 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`} ref={contactRef}>
+      <footer className={`bg-white text-black text-center items-center py-16 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`} ref={contactRef}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8">
             <div className='flex flex-col justify-start items-center'>

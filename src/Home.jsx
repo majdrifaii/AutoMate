@@ -117,7 +117,7 @@ const Home = () => {
                 {service.title}
               </p>
               </div>
-              <Link to={`/service/${service.name}`} className={`bg-[#0051B6] text-white px-6 py-2 rounded-md hover:bg-[#003E8C] transition-colors duration-200 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
+              <Link to={`/service/${service.name}/${service.id}`} className={`bg-[#0051B6] text-white px-6 py-2 rounded-md hover:bg-[#003E8C] transition-colors duration-200 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
                 {currentLang === 'ar' ? 'اعرف المزيد' : 'Learn More'}
               </Link>
             </div>

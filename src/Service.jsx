@@ -5,8 +5,8 @@ import { useLanguage } from "./LanguageContext";
 
 const Service = () => {
     const { currentLang, isRTL } = useLanguage();
-    const { name } = useParams();
-    const service = services[currentLang].find((service) => service.name.toLowerCase() === name.toLowerCase());
+    const { id } = useParams();
+    const service = services[currentLang].find((service) => service.id == id);
 
     if(!service){
         return (
@@ -47,7 +47,7 @@ const Service = () => {
         <div className="w-11/12 xl:max-w-screen-xl mx-auto mt-5 mb-10">
         <h1 className="title text-3xl mb-10 font-bold">{currentLang === 'en' ? "Related Service" : "الخدمات ذات الصلة"}</h1>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
-            {services[currentLang].filter((service) => service.name.toLowerCase() != name.toLowerCase()).slice(0, 4).map((service) => (
+            {services[currentLang].filter((service) => service.id != id).slice(0, 4).map((service) => (
                 <div key={service.id} className=" bg-white border border-gray-200 rounded-lg shadow-sm hover:scale-[102%] transition-all duration-500 ease-in-out"> 
                     <div className="">
                         <img className="w-full rounded-tl-md rounded-tr-md" src={service.image} alt={service.name} />
@@ -56,7 +56,7 @@ const Service = () => {
                         <div className="h-20">
                             <h5 className="text-2xl font-semibold tracking-tight text-gray-900">{service.name}</h5>
                         </div>
-                        <Link to={`/service/${service.name}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">
+                        <Link to={`/service/${service.name}/${service.id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">
                         {currentLang === 'en' ? (
                             <>
                             Read more
