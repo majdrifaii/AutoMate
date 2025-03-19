@@ -41,27 +41,27 @@ const Layout = ({ children }) => {
             <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-10'}`}>
                 <Link
                   to={'/'}
-                  className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
+                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
                 >
                   {currentLang === 'en' ? 'Home' : 'الرئيسية'}
                 </Link>
                 <Link
                   to={'/blogs'}
-                  className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
+                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
                 >
                   {currentLang === 'en' ? 'Blogs' : 'مقالات'}
                 </Link>
 
                 <div className='relative'>
                 <button
-                  className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
+                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
                   onClick={() => setIsServiceDropdownOpen(!isServiceDropdownOpen)}
                 >
                   {currentLang === 'en' ? 'Services' : 'الخدمات'}
                 </button>
                 {isServiceDropdownOpen && (
                   <div
-                    className="absolute -left-28 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 border border-gray-100 z-50"
+                    className="absolute -left-28 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 border border-gray-50 z-50"
                     // onMouseLeave={() => setIsServiceDropdownOpen(false)}
                   >
                     {translations[currentLang].services.map((service, index) => (
@@ -71,7 +71,7 @@ const Layout = ({ children }) => {
                       onClick={() => {
                         setIsServiceDropdownOpen(false);
                       }}
-                      className={`block w-full text-left px-4 py-3 hover:bg-gray-50 hover:text-[#01C38D] transition-colors duration-200 cursor-pointer`}
+                      className={`block w-full text-left px-4 py-3 hover:bg-gray-50 hover:text-accent transition-colors duration-200 cursor-pointer`}
                     >
                       {serviceIcons[service]}
                       {service}
@@ -81,7 +81,7 @@ const Layout = ({ children }) => {
                 )}
                 </div>
                 <button
-                  className="text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
+                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
                   onClick={scrollToContact}
                 >
                   {currentLang === 'en' ? 'Contact Us' : 'اتصل بنا'}
@@ -93,7 +93,7 @@ const Layout = ({ children }) => {
 
               <div className="relative">
                 <button
-                  className="flex items-center space-x-2 text-gray-700 hover:text-[#01C38D] transition-colors duration-200 font-medium cursor-pointer mx-5"
+                  className="flex items-center space-x-2 text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer mx-5"
                   onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                 >
                   <span>{currentLang === 'en' ? 'ENG' : 'عربي'}</span>
@@ -109,7 +109,7 @@ const Layout = ({ children }) => {
                         setCurrentLang('en');
                         setIsLangDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2 ${currentLang === 'en' ? 'text-[#01C38D] bg-gray-50' : 'text-gray-700'} hover:bg-gray-50 hover:text-[#01C38D] transition-colors duration-200`}
+                      className={`w-full text-left px-4 py-2 ${currentLang === 'en' ? 'text-accent bg-gray-50' : 'text-gray-700'} hover:bg-gray-50 hover:text-accent transition-colors duration-200`}
                     >
                       English
                     </button>
@@ -118,7 +118,7 @@ const Layout = ({ children }) => {
                         setCurrentLang('ar');
                         setIsLangDropdownOpen(false);
                       }}
-                      className={`w-full text-left px-4 py-2 ${currentLang === 'ar' ? 'text-[#01C38D] bg-gray-50' : 'text-gray-700'} hover:bg-gray-50 hover:text-[#01C38D] transition-colors duration-200`}
+                      className={`w-full text-left px-4 py-2 ${currentLang === 'ar' ? 'text-accent bg-gray-50' : 'text-gray-700'} hover:bg-gray-50 hover:text-accent transition-colors duration-200`}
                     >
                       العربية
                     </button>
@@ -127,7 +127,7 @@ const Layout = ({ children }) => {
               </div>
             </nav>
             <button
-              className="md:hidden text-accent hover:scale-110 transition-all duration-300 cursor-pointer mx-7"
+              className="md:hidden text-secondary hover:scale-105 hover:text-accent transition-all duration-300 cursor-pointer mx-7"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <FaBars className="text-2xl" />
@@ -142,20 +142,20 @@ const Layout = ({ children }) => {
           <div className="py-5">
               <Link
                   to={'/'}
-                  className="w-full block py-4 text-gray-700 hover:text-[#01C38D] hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
+                  className="w-full block py-4 text-secondary hover:text-accent hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {currentLang === 'en' ? 'Home' : 'الرئيسية'}
                 </Link>
                 <Link
                   to={'/blogs'}
-                  className="w-full block py-4 text-gray-700 hover:text-[#01C38D] hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
+                  className="w-full block py-4 text-secondary hover:text-accent hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {currentLang === 'en' ? 'Blogs' : 'مقالات'}
                 </Link>
                 <button
-                  className="w-full block py-4 text-left text-gray-700 hover:text-[#01C38D] hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
+                  className="w-full block py-4 text-left text-secondary hover:text-accent hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
                   onClick={() => setIsServiceDropdownOpen(!isServiceDropdownOpen)}
                 >
                   {currentLang === 'en' ? 'Services' : 'الخدمات'}
@@ -170,7 +170,7 @@ const Layout = ({ children }) => {
                         setIsServiceDropdownOpen(false);
                         setIsMenuOpen(false)
                       }}
-                      className={`block w-full text-left px-10 py-2 hover:bg-gray-50 hover:text-[#01C38D] transition-colors duration-200 cursor-pointer`}
+                      className={`block w-full text-left px-10 py-2 hover:bg-gray-50 hover:text-accent transition-colors duration-200 cursor-pointer`}
                     >
                       {serviceIcons[service]}
                       {service}
@@ -187,7 +187,7 @@ const Layout = ({ children }) => {
                       setCurrentLang('en');
                       setIsMenuOpen(false);
                     }}
-                    className={`${currentLang === 'en' ? 'text-[#01C38D]' : 'text-gray-700'} font-medium hover:text-[#01C38D] transition-colors duration-200`}
+                    className={`${currentLang === 'en' ? 'text-accent' : 'text-gray-700'} font-medium hover:text-accent transition-colors duration-200`}
                   >
                     ENG
                   </button>
@@ -196,7 +196,7 @@ const Layout = ({ children }) => {
                       setCurrentLang('ar');
                       setIsMenuOpen(false);
                     }}
-                    className={`${currentLang === 'ar' ? 'text-[#01C38D]' : 'text-gray-700'} font-medium hover:text-[#01C38D] transition-colors duration-200`}
+                    className={`${currentLang === 'ar' ? 'text-accent' : 'text-gray-700'} font-medium hover:text-accent transition-colors duration-200`}
                   >
                     عربي
                   </button>
@@ -214,7 +214,7 @@ const Layout = ({ children }) => {
           <div className="grid md:grid-cols-4 gap-8">
             <div className='flex flex-col justify-start items-center'>
               <img src={Logo} alt="autoMATE" className="h-56 mb-3" />
-              <p className={`text-gray-300 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
+              <p className={`text-gray-500 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
                 {translations[currentLang].footer.description}
               </p>
             </div>
@@ -223,11 +223,11 @@ const Layout = ({ children }) => {
                 {translations[currentLang].footer.quickLinks}
               </h3>
               <ul className="space-y-2">
-                {(currentLang === 'ar' ? ['الرئيسية', 'الخدمات'] : ['Home', 'Services']).map((item, index) => (
+                {(currentLang === 'ar' ? ['الرئيسية', 'الخدمات', 'مقالات', 'اتصل بنا'] : ['Home', 'Services', 'Blogs', 'Contact us']).map((item, index) => (
                   <li key={index}>
                     <a
-                      href={`#${item.toLowerCase()}`}
-                      className={`text-gray-300 hover:text-white transition-colors duration-200 cursor-pointer ${currentLang === 'ar' ? 'font-arabic' : ''}`}
+                      href=''
+                      className={`text-gray-500 hover:text-accent transition-colors duration-200 cursor-pointer ${currentLang === 'ar' ? 'font-arabic' : ''}`}
                     >
                       {item}
                     </a>
@@ -239,7 +239,7 @@ const Layout = ({ children }) => {
               <h3 className={`text-xl font-bold mb-4 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
                 {translations[currentLang].footer.contact}
               </h3>
-              <ul className="space-y-2 text-gray-300">
+              <ul className="space-y-2 text-gray-500">
                 <li className={currentLang === 'ar' ? 'font-arabic' : ''}>
                   <i className={`fas fa-map-marker-alt ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`}></i>
                   {currentLang === 'ar' ? '123 شارع الابتكار، مدينة التقنية' : '123 Innovation Drive, Tech City'}
@@ -261,26 +261,26 @@ const Layout = ({ children }) => {
               <div className="flex justify-center items-center space-x-10 mt-10">
                   <a
                     href=''
-                    className="text-white hover:text-[#01C38D] transition-colors duration-200 cursor-pointer"
+                    className="text-gray-500 hover:text-accent transition-colors duration-200 cursor-pointer"
                   >
                     <FaFacebook className="text-3xl" />
                   </a>
                   <a
                     href=""
-                    className="text-white hover:text-[#01C38D] transition-colors duration-200 cursor-pointer"
+                    className="text-gray-500 hover:text-accent transition-colors duration-200 cursor-pointer"
                   >
                     <FaInstagram className="text-3xl" />
                   </a>
                   <a
                     href=""
-                    className="text-white hover:text-[#01C38D] transition-colors duration-200 cursor-pointer"
+                    className="text-gray-500 hover:text-accent transition-colors duration-200 cursor-pointer"
                   >
                     <FaLinkedin className="text-3xl" />
                   </a>
               </div>
             </div>
           </div>
-          <div className="border-t border-white/20 mt-12 pt-8 text-center text-gray-300">
+          <div className="border-t border-white/20 mt-12 pt-8 text-center text-gray-500">
             <p className="whitespace-nowrap">© 2025 autoMATE. All rights reserved.</p>
           </div>
         </div>

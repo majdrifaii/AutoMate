@@ -21,7 +21,7 @@ export const LanguageProvider = ({ children }) => {
         description: 'Transforming businesses through intelligent automation and AI solutions.',
       },
       hero: {
-        title: 'Let the work be done by autoMATE',
+        title: 'Let the work be done autoMATE',
         subtitle: 'Empower your business with cutting-edge AI and automation solutions that drive efficiency and innovation.',
         consultation: 'Get a FREE personalized automation consultation',
         consultationDesc: 'Our experts will analyze your business processes and design a custom automation strategy - No commitment required',

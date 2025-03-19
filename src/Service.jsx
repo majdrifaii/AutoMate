@@ -19,7 +19,7 @@ const Service = () => {
     }
 
     return ( 
-        <div className={`pt-20 ${isRTL ? 'rtl font-arabic' : 'ltr font-english'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+        <div className={`pt-20 bg-slate-50 ${isRTL ? 'rtl font-arabic' : 'ltr font-english'}`} dir={isRTL ? 'rtl' : 'ltr'}>
            <section className="bg-white">
             <div className="gap-8 items-center py-8 px-4 mx-auto w-11/12 xl:gap-16 md:grid md:grid-cols-2 sm:py-10 lg:px-6">
                 <img className="w-full object-cover rounded-md" src={service.image} alt={service.name} />
@@ -44,11 +44,11 @@ const Service = () => {
                 </div>
             </div>
         </section>
-        <div className="w-11/12 xl:max-w-screen-xl mx-auto mt-5 mb-10">
+        <div className="w-11/12 xl:max-w-screen-xl mx-auto mt-5 mb-10 py-10">
         <h1 className="title text-3xl mb-10 font-bold">{currentLang === 'en' ? "Related Service" : "الخدمات ذات الصلة"}</h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4  sm:grid-cols-2 lg:grid-cols-4">
             {services[currentLang].filter((service) => service.id != id).slice(0, 4).map((service) => (
-                <div key={service.id} className=" bg-white border border-gray-200 rounded-lg shadow-sm hover:scale-[102%] transition-all duration-500 ease-in-out"> 
+                <div key={service.id} className=" bg-white border border-gray-200 rounded-lg shadow-sm"> 
                     <div className="">
                         <img className="w-full rounded-tl-md rounded-tr-md" src={service.image} alt={service.name} />
                     </div>
@@ -56,7 +56,7 @@ const Service = () => {
                         <div className="h-20">
                             <h5 className="text-2xl font-semibold tracking-tight text-gray-900">{service.name}</h5>
                         </div>
-                        <Link to={`/service/${service.name}/${service.id}`} className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800">
+                        <Link to={`/service/${service.name}/${service.id}`} className="inline-flex items-center px-3 py-2 text-md font-medium text-center text-secondary rounded-lg hover:text-accent">
                         {currentLang === 'en' ? (
                             <>
                             Read more

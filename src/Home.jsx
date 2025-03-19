@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import services from '../public/data/services.json';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaCalendarCheck, FaPhoneAlt } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaCalendarCheck, FaCheck, FaGift, FaPhoneAlt } from 'react-icons/fa';
 
 const Home = () => {
   const { currentLang, isRTL, translations, whyChooseUsCards, portfolioSlides, faqs } = useLanguage();
@@ -46,8 +46,8 @@ const Home = () => {
         className="pt-20 relative bg-cover bg-center min-h-[600px] flex items-center"
         style={{ backgroundImage: `url(${Banner})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0051B6]/90 to-transparent rtl:bg-gradient-to-l"></div>
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0051B6]/90 to-transparent"></div>
+        <div className="max-w-7xl mx-auto px-4 py-7 relative z-10">
           <div className={`max-w-2xl text-white ${isRTL ? 'mr-0 ml-auto' : ''}`}>
             <h1 className={`text-5xl font-semibold mb-6 ${isRTL ? 'font-arabic' : 'font-english'}`}>{translations[currentLang].hero.title}</h1>
             <p className={`text-xl mb-4 ${isRTL ? 'font-arabic' : ''}`}>{translations[currentLang].hero.subtitle}</p>
@@ -81,7 +81,7 @@ const Home = () => {
           <h2 className={`text-4xl font-bold text-center mb-16 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
             {currentLang === 'ar' ? 'خدماتنا' : 'Our Services'}
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services[currentLang].map((service, index) => (
             <div key={index} className="relative bg-white rounded-lg shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               {index === 2 &&
@@ -109,7 +109,7 @@ const Home = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className='h-32'>
+              <div className='h-44 md:h-36'>
               <h3 className={`text-xl font-bold mb-3 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
                 {service.name}
               </h3>
@@ -117,8 +117,18 @@ const Home = () => {
                 {service.title}
               </p>
               </div>
-              <Link to={`/service/${service.name}/${service.id}`} className={`bg-[#0051B6] text-white px-6 py-2 rounded-md hover:bg-[#003E8C] transition-colors duration-200 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
-                {currentLang === 'ar' ? 'اعرف المزيد' : 'Learn More'}
+              <Link to={`/service/${service.name}/${service.id}`} className={`text-secondary hover:text-accent px-6 py-2 rounded-md transition-colors duration-200 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
+                {currentLang === 'ar' ? (
+                  <>
+                 اعرف المزيد
+                 <FaArrowLeft className="inline mr-2 -ml-1 w-5 h-4" />
+                 </>
+                ) : (
+                  <>
+                  Learn More
+                  <FaArrowRight className="inline ml-2 -mr-1 w-5 h-4" />
+                  </>
+                 )}
               </Link>
             </div>
             ))}
@@ -166,15 +176,15 @@ const Home = () => {
       viewport={{ once: true }}
       className="py-20"
     >
-      <div className="w-11/12 mx-auto px-4">
+      <div className="lg:w-11/12 lg:mx-auto lg:px-5">
         <h2 className="text-4xl font-bold text-center mb-10">About Us</h2>
         <Slider {...Settings}>
           {portfolioSlides[currentLang].map((slide, index) => (
-            <div className="rounded-lg relative" key={index}>
+            <div className="rounded-lg relative w-full" key={index}>
               {/* Text container above the image */}
-              <div className={`absolute top-10 w-1/4 ${index === 3 ? 'right-20' : 'left-20'}`} dir={isRTL ? 'rtl' : 'ltr'}>
-                <h3 className="text-5xl text-white font-bold">{slide.title}</h3>
-                <p className={`text-white ${index === 3 ? 'text-2xl' : 'text-3xl'}`}>{slide.description}</p>
+              <div className={`absolute top-10 w-1/2 md:w-1/4 ${index === 3 ? 'right-20' : 'left-20'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+                <h3 className="text-lg sm:text-xl md:text-2xl lg:text-5xl text-white font-bold">{slide.title}</h3>
+                <p className={`text-white ${index === 3 ? 'text-sm sm:text-base md:text-lg lg:text-2xl' : 'text-base sm:text-lg md:text-xl lg:text-3xl'}`}>{slide.description}</p>
               </div>
               {/* Image */}
               <img
@@ -206,24 +216,24 @@ const Home = () => {
             </p>
             <div className="bg-white/10 rounded-lg p-6 mb-12 max-w-2xl mx-auto">
               <div className={`flex items-start ${currentLang === 'ar' ? 'space-x-reverse' : 'space-x-4'}`}>
-                <div className="text-[#01C38D]">
-                  <i className="fas fa-gift text-3xl"></i>
+                <div className="text-white">
+                  <FaGift className="text-3xl" />
                 </div>
-                <div className={`${currentLang === 'ar' ? 'text-right' : 'text-left'}`}>
+                <div className={`text-white ${currentLang === 'ar' ? 'text-right' : 'text-left'}`}>
                   <h3 className={`text-xl font-bold mb-2 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
                     {currentLang === 'ar' ? 'استشارة مجانية لأتمتة الأعمال' : 'Free Business Automation Consultation'}
                   </h3>
                   <ul className="space-y-2">
                     <li className="flex items-center">
-                      <i className={`fas fa-check text-[#01C38D] ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`}></i>
+                      <FaCheck className={`text-[#01C38D] ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`} />
                       {currentLang === 'ar' ? 'تحليل شامل لعمليات الأعمال' : 'Comprehensive business process analysis'}
                     </li>
                     <li className="flex items-center">
-                      <i className={`fas fa-check text-[#01C38D] ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`}></i>
+                    <FaCheck className={`text-[#01C38D] ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`} />
                       {currentLang === 'ar' ? 'تصميم استراتيجية أتمتة مخصصة' : 'Custom automation strategy design'}
                     </li>
                     <li className="flex items-center">
-                      <i className={`fas fa-check text-[#01C38D] ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`}></i>
+                    <FaCheck className={`text-[#01C38D] ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`} />
                       {currentLang === 'ar' ? 'توقعات العائد على الاستثمار وخارطة طريق التنفيذ' : 'ROI projection and implementation roadmap'}
                     </li>
                   </ul>
@@ -231,11 +241,11 @@ const Home = () => {
               </div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-              <button className="bg-white text-[#0051B6] px-6 py-4 rounded-md hover:bg-gray-100 transition-colors duration-200 text-lg font-semibold whitespace-nowrap cursor-pointer">
+              <button className="bg-white text-secondary px-6 py-4 rounded-md hover:bg-gray-200 transition-colors duration-200 text-lg font-semibold whitespace-nowrap cursor-pointer">
               <FaCalendarCheck className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 {currentLang === 'ar' ? 'احجز استشارة مجانية' : 'Book a Free Consultant'}
               </button>
-              <button className="bg-transparent border-2 border-white text-white px-6 py-4 rounded-md hover:bg-white/10 transition-colors duration-200 text-lg font-semibold whitespace-nowrap cursor-pointer">
+              <button className="bg-transparent border-2 border-white text-white px-6 py-4 rounded-md hover:bg-white/20 transition-colors duration-200 text-lg font-semibold whitespace-nowrap cursor-pointer">
               <FaPhoneAlt className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 {currentLang === 'ar' ? 'اتصل بالمبيعات' : 'Contact Sales'}
               </button>
@@ -254,7 +264,7 @@ const Home = () => {
     <h2 className={`text-4xl font-bold text-center mb-16 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
       {currentLang === 'ar' ? 'الأسئلة الشائعة' : 'Frequently Asked Questions'}
     </h2>
-    <div className="max-w-3xl mx-auto">  
+    <div className="max-w-5xl mx-auto">  
       {faqs[currentLang].map((faq, index) => (
         <div key={index} className="mb-4 shadow-md rounded-lg">
           <button
