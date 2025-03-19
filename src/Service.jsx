@@ -21,14 +21,14 @@ const Service = () => {
     return ( 
         <div className={`pt-20 bg-slate-50 ${isRTL ? 'rtl font-arabic' : 'ltr font-english'}`} dir={isRTL ? 'rtl' : 'ltr'}>
            <section className="bg-white">
-            <div className="gap-8 items-center py-8 px-4 mx-auto w-11/12 xl:gap-16 md:grid md:grid-cols-2 sm:py-10 lg:px-6">
+            <div className="gap-8 items-center py-8 px-4 mx-auto w-11/12 xl:gap-16 grid lg:grid-cols-2 sm:py-10 lg:px-6">
                 <img className="w-full object-cover rounded-md" src={service.image} alt={service.name} />
                 <div className="mt-4 md:mt-0">
-                    <h1 className="mb-4 text-5xl tracking-tight font-extrabold text-gray-900">{service.name}</h1>
+                    <h1 className="mb-4 text-3xl md:text-5xl tracking-tight font-extrabold text-secondary">{service.name}</h1>
                     {service.description.map((des, index) => (
                         <p key={index} className="my-1.5 font-light text-gray-500 md:text-lg">{des}</p>
                     ))}
-                    <button className="inline-flex items-center text-white bg-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer mt-5">
+                    <button className="inline-flex items-center text-white bg-secondary font-medium rounded-lg text-sm px-5 py-2.5 text-center cursor-pointer mt-5 hover:bg-accent transition-colors duration-300">
                     {currentLang === 'en' ? (
                             <>
                             Get Started

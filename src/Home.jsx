@@ -78,7 +78,7 @@ const Home = () => {
       viewport={{ once: true }} 
       className="py-20 bg-white" ref={serviceRef}>
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className={`text-4xl font-bold text-center mb-16 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
+          <h2 className={`text-secondary text-4xl font-bold text-center mb-16 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
             {currentLang === 'ar' ? 'خدماتنا' : 'Our Services'}
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -143,7 +143,7 @@ const Home = () => {
       viewport={{ once: true }}
        className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className={`text-4xl font-bold text-center mb-16 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
+          <h2 className={`text-secondary text-4xl font-bold text-center mb-16 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
             {currentLang === 'ar' ? 'لماذا تختارنا' : 'Why Choose Us'}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
@@ -177,7 +177,9 @@ const Home = () => {
       className="py-20"
     >
       <div className="lg:w-11/12 lg:mx-auto lg:px-5">
-        <h2 className="text-4xl font-bold text-center mb-10">About Us</h2>
+        <h2 className="text-secondary text-4xl font-bold text-center mb-10">
+        {currentLang === 'ar' ? 'من نحن' : 'About Us'}
+        </h2>
         <Slider {...Settings}>
           {portfolioSlides[currentLang].map((slide, index) => (
             <div className="rounded-lg relative w-full" key={index}>
@@ -261,7 +263,7 @@ const Home = () => {
       viewport={{ once: true }}
       className="py-20 bg-gray-50">
   <div className="max-w-7xl mx-auto px-4">
-    <h2 className={`text-4xl font-bold text-center mb-16 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
+    <h2 className={`text-secondary text-4xl font-bold text-center mb-16 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
       {currentLang === 'ar' ? 'الأسئلة الشائعة' : 'Frequently Asked Questions'}
     </h2>
     <div className="max-w-5xl mx-auto">  

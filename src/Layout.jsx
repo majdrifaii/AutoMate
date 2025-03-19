@@ -170,7 +170,7 @@ const Layout = ({ children }) => {
                         setIsServiceDropdownOpen(false);
                         setIsMenuOpen(false)
                       }}
-                      className={`block w-full text-left px-10 py-2 hover:bg-gray-50 hover:text-accent transition-colors duration-200 cursor-pointer`}
+                      className={`block w-full text-left px-10 py-2 text-secondary hover:bg-gray-50 hover:text-accent transition-colors duration-200 cursor-pointer`}
                     >
                       {serviceIcons[service]}
                       {service}
