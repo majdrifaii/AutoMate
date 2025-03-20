@@ -8,6 +8,7 @@ import Layout from './Layout';
 import { LanguageProvider } from './LanguageContext';
 import Service from './Service';
 import NotFound from './NotFound';
+import Blogs from './Blogs';
 import Blog from './Blog';
 
 function App() {
@@ -19,7 +20,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='service/:name/:id' element={<Service />} />
-        <Route path='blogs' element={<Blog />} />
+        <Route path='blogs' element={<Blogs />} />
+        <Route path='blogs/:id' element={<Blog />} />
         <Route path='*' element={<NotFound/>} />
       </Routes>
       </Layout>

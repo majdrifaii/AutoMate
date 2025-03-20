@@ -1,6 +1,7 @@
 {
     "en": [
         {
+            "id": 1,
             "title": "How Does an Intelligent Customer Service Bot Improve Customer Experience?",
             "image": "../blogImages/blog1.png",
             "description": [
@@ -39,6 +40,7 @@
     ],
     "ar": [
         {
+            "id": 1,
             "title": "كيف يُحدث بوت خدمة الزبائن الذكي نقلة نوعية في تجربة العملاء؟",
             "image": "../blogImages/blog1.png",
             "description": [

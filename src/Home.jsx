@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import services from '../public/data/services.json';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaArrowLeft, FaArrowRight, FaCalendarCheck, FaCheck, FaGift, FaPhoneAlt } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaCalendarCheck, FaCheck, FaGift, FaPhoneAlt, FaStar } from 'react-icons/fa';
 
 const Home = () => {
   const { currentLang, isRTL, translations, whyChooseUsCards, portfolioSlides, faqs } = useLanguage();
@@ -35,7 +35,7 @@ const Home = () => {
   };
 
   return (
-    <div className={`min-h-screen bg-white ${isRTL ? 'rtl font-arabic' : 'ltr font-english'}`} dir={isRTL ? 'rtl' : 'ltr'}>
+    <div className={`min-h-screen overflow-x-hidden bg-white ${isRTL ? 'font-family-arabic' : 'font-family-english'}`} dir={isRTL ? 'rtl' : 'ltr'}>
      
       {/* Hero Section */}
       <motion.section
@@ -53,7 +53,6 @@ const Home = () => {
             <p className={`text-xl mb-4 ${isRTL ? 'font-arabic' : ''}`}>{translations[currentLang].hero.subtitle}</p>
             <div className="bg-white/10 border border-white/20 rounded-lg p-4 mb-8">
               <p className={`text-lg mb-2 ${isRTL ? 'font-arabic' : ''}`}>
-                <i className={`fas fa-star text-[#01C38D] ${isRTL ? 'ml-2' : 'mr-2'}`}></i>
                 {translations[currentLang].hero.consultation}
               </p>
               <p className={`text-white/80 text-sm ${isRTL ? 'font-arabic' : ''}`}>{translations[currentLang].hero.consultationDesc}</p>

@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Logo from '../public/icon/autoMATE.png';
 import { useLanguage } from './LanguageContext';
 import { FaBars, FaChevronUp, FaChevronDown, FaFacebook, FaInstagram, FaLinkedin, FaPen, FaBullhorn, FaRobot, FaShareAlt, FaClipboardList, FaCode } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import ScrollToTop from './scrollToTop';
 
 const Layout = ({ children }) => {
   const { currentLang, setCurrentLang, isRTL, translations} = useLanguage();
@@ -10,6 +11,15 @@ const Layout = ({ children }) => {
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false);
   const contactRef = useRef(null);
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (window.gtag) {
+      window.gtag('config', 'G-JYCY89H1PF', {
+        page_path: pathname,
+      });
+    }
+  }, [pathname]);
 
   const scrollToContact = () => {
     contactRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -32,7 +42,8 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`}>
+    <ScrollToTop />
+      <header className={`fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100 ${currentLang === 'en' ? 'font-family-english' : 'font-family-arabic'}`}>
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-20">
             <Link to={'/'} className="flex items-center">
