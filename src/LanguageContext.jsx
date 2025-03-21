@@ -2,11 +2,6 @@ import React, { createContext, useState, useContext, useRef } from 'react';
 import Custom from './assets/WhyChooseUs/Customized Automation Solutions .png';
 import Trust from './assets/WhyChooseUs/Building Lasting Trust with Our Clients..png';
 import Scale from './assets/WhyChooseUs/Scalable Solutions.png';
-import png1 from './assets/portifolio/1.png';
-import png2 from './assets/portifolio/2.png';
-import png3 from './assets/portifolio/3.png';
-import png4 from './assets/portifolio/4.png';
-import png5 from './assets/portifolio/5.png';
 
 // Create the context
 const LanguageContext = createContext();
@@ -29,7 +24,7 @@ export const LanguageProvider = ({ children }) => {
         title: 'Let the work be done autoMATE',
         subtitle: 'Empower your business with cutting-edge AI and automation solutions that drive efficiency and innovation.',
         consultation: 'Get a FREE personalized automation consultation',
-        consultationDesc: 'Our experts will analyze your business processes and design a custom automation strategy',
+        consultationDesc: 'Our experts will analyze your business processes and design a custom automation strategy - No commitment required',
         bookButton: 'Book Free Consultation',
         exploreButton: 'Explore Our Services'
       },
@@ -46,7 +41,7 @@ export const LanguageProvider = ({ children }) => {
         title: 'دع العمل يتم بواسطة autoMATE',
         subtitle: 'قم بتمكين عملك من خلال حلول الذكاء الاصطناعي والأتمتة المتطورة التي تدفع الكفاءة والابتكار.',
         consultation: 'احصل على استشارة مجانية مخصصة للأتمتة',
-        consultationDesc: 'سيقوم خبراؤنا بتحليل عمليات عملك وتصميم استراتيجية أتمتة مخصصة',
+        consultationDesc: 'سيقوم خبراؤنا بتحليل عمليات عملك وتصميم استراتيجية أتمتة مخصصة - لا يلزم الالتزام',
         bookButton: 'احجز استشارة مجانية',
         exploreButton: 'استكشف خدماتنا'
       },
@@ -96,55 +91,54 @@ export const LanguageProvider = ({ children }) => {
       {
         title: "let the work be done autoMATE.",
         description: "",
-        image: png1
+        image: "/src/assets/portfolio/1.png"
       },
       {
         title: "",
         description: "The leading company in Syria for providing integrated marketing solutions using advanced artificial intelligence technologies.",
-        image:  png2
+        image:  "/src/assets/portfolio/2.png"
       },
       {
         title: "Our vision:",
         description: "We aim to develop the job market through automation and artificial intelligence, believing that this vision will contribute to sustainable growth and economic prosperity for businesses.",
-        image: png3
+        image: "/src/assets/portfolio/3.png"
       },
       {
         title: "Our Mission:",
-        description: "Providing innovative automation solutions to enhance business performance and profitability through artificial intelligence technologies and operational cost reduction.",
-        image: png4
+        description: "Providing innovative automation solutions to enhance business performance and profitability through artificial intelligence technologies and operational cost reduction, while adhering to the highest quality standards to ensure customer satisfaction and sustainable success.",
+        image: "/src/assets/portfolio/4.png"
       },
       {
         title: "",
         description: "Recent studies have shown that automation can boost sales by up to 30% At autoMATE, we are here to help you achieve this growth with our expertise.",
-        image: png5
+        image: "/src/assets/portfolio/5.png"
       }
     ],
     "ar": [
-    
+      {
+        title: "let the work be done autoMATE.",
+        description: "",
+        image: "/src/assets/portfolio/1.png"
+      },
       {
         title: "",
         description: "الشركة الرائدة الأولى في سوريا في تقديم حلول التسويق المتكاملة باستخدام تقنيات الذكاء الاصطناعي المتقدمة.",
-        image:  png2
+        image:  "/src/assets/portfolio/2.png"
       },
       {
         title: "رؤيتنا:",
         description: "نسعى الى تطوير سوق العمل من خلال الأتمتة والذكاء الإصطناعي, نؤمن بأن هذه الرؤية ستساهم في تحقيق نمو مستدام وازدهار اقتصادي الشركات.",
-        image: png3
-      },
-      {
-        title: "let the work be done autoMATE.",
-        description: "",
-        image: png1
+        image: "/src/assets/portfolio/3.png"
       },
       {
         title: "مهمتنا:",
-        description: "تقديم حلول أتمتة مبتكرة لتحسين أداء الشركات وزيادة ربحيتها، من خلال تقنيات الذكاء الاصطناعي وتقليل التكاليف التشغيلية",
-        image: png4
+        description: "تقديم حلول أتمتة مبتكرة لتحسين أداء الشركات وزيادة ربحيتها، من خلال تقنيات الذكاء الاصطناعي وتقليل التكاليف التشغيلية، مع الالتزام . بأعلى معايير الجودة لتحقيق رضا العملاء ونجاح مستدام",
+        image: "/src/assets/portfolio/4.png"
       },
       {
         title: "",
         description: "دراسات حديثة أثبتت أن الأتمتة يمكن أن تزيد من المبيعات بنسبة تصل إلى 30%، ونحن هنا لنساعدك على تحقيق هذه الزيادة بفضل خبرتنا.",
-        image: png5
+        image: "/src/assets/portfolio/5.png"
       }
     ]
   }
