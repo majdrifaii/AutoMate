@@ -1,6 +1,6 @@
 {
-  "name": "automate",
   "homepage": "https://majdrifaii.github.io/AutoMate",
+  "name": "automate",
   "private": true,
   "version": "0.0.0",
   "type": "module",
