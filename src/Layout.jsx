@@ -1,9 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Logo from '../public/icon/autoMATE.png';
+import Logo from '../public/data/icon/autoMate.png';
 import { useLanguage } from './LanguageContext';
 import { FaBars, FaChevronUp, FaChevronDown, FaFacebook, FaInstagram, FaLinkedin, FaPen, FaBullhorn, FaRobot, FaShareAlt, FaClipboardList, FaCode } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import ScrollToTop from './scrollToTop';
+import { MdLocationPin } from "react-icons/md";
+import { FaPhoneVolume } from "react-icons/fa6";
+import { MdEmail } from "react-icons/md";
+
+
 
 const Layout = ({ children }) => {
   const { currentLang, setCurrentLang, isRTL, translations} = useLanguage();
@@ -82,7 +87,7 @@ const Layout = ({ children }) => {
                       onClick={() => {
                         setIsServiceDropdownOpen(false);
                       }}
-                      className={`block w-full text-left px-4 py-3 hover:bg-gray-50 hover:text-accent transition-colors duration-200 cursor-pointer`}
+                      className={`block w-full text-left px-4 py-3 text-secondary hover:bg-gray-50 hover:text-accent transition-colors duration-200 cursor-pointer`}
                     >
                       {serviceIcons[service]}
                       {service}
@@ -191,14 +196,14 @@ const Layout = ({ children }) => {
                 )}
             <div className="py-3 px-4 border-t border-gray-100">
               <div className="flex items-center justify-between">
-                <span className="text-gray-700">Language</span>
+                <span className="text-secondary font-medium">Language</span>
                 <div className="flex space-x-4">
                   <button
                     onClick={() => {
                       setCurrentLang('en');
                       setIsMenuOpen(false);
                     }}
-                    className={`${currentLang === 'en' ? 'text-accent' : 'text-gray-700'} font-medium hover:text-accent transition-colors duration-200`}
+                    className={`${currentLang === 'en' ? 'text-accent' : 'text-secondary'} font-medium hover:text-accent transition-colors duration-200`}
                   >
                     ENG
                   </button>
@@ -207,7 +212,7 @@ const Layout = ({ children }) => {
                       setCurrentLang('ar');
                       setIsMenuOpen(false);
                     }}
-                    className={`${currentLang === 'ar' ? 'text-accent' : 'text-gray-700'} font-medium hover:text-accent transition-colors duration-200`}
+                    className={`${currentLang === 'ar' ? 'text-accent' : 'text-secondary'} font-medium hover:text-accent transition-colors duration-200`}
                   >
                     عربي
                   </button>
@@ -225,9 +230,7 @@ const Layout = ({ children }) => {
           <div className="grid md:grid-cols-4 gap-8">
             <div className='flex flex-col justify-start items-center'>
               <img src={Logo} alt="autoMATE" className="h-56 mb-3" />
-              <p className={`text-gray-500 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
-                {translations[currentLang].footer.description}
-              </p>
+      
             </div>
             <div>
               <h3 className={`text-xl font-bold mb-4 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
@@ -253,14 +256,17 @@ const Layout = ({ children }) => {
               <ul className="space-y-2 text-gray-500">
                 <li className={currentLang === 'ar' ? 'font-arabic' : ''}>
                   <i className={`fas fa-map-marker-alt ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`}></i>
+                  <MdLocationPin className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
                   {currentLang === 'ar' ? '123 شارع الابتكار، مدينة التقنية' : '123 Innovation Drive, Tech City'}
                 </li>
                 <li>
                   <i className={`fas fa-phone ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`}></i>
+                  <FaPhoneVolume className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
                   +1 (555) 123-4567
                 </li>
                 <li>
                   <i className={`fas fa-envelope ${currentLang === 'ar' ? 'ml-2' : 'mr-2'}`}></i>
+                  <MdEmail className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
                   info@automate.com
                 </li>
               </ul>
