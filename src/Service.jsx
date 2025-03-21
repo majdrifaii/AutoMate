@@ -45,7 +45,7 @@ const Service = () => {
             </div>
         </section>
         <div className="w-11/12 xl:max-w-screen-xl mx-auto mt-5 mb-10 py-10">
-        <h1 className="title text-3xl mb-10 font-bold">{currentLang === 'en' ? "Related Service" : "الخدمات ذات الصلة"}</h1>
+        <h1 className="title text-3xl mb-10 font-bold">{currentLang === 'en' ? "Related Services" : "الخدمات ذات الصلة"}</h1>
         <div className="grid grid-cols-1 gap-4  sm:grid-cols-2 lg:grid-cols-4">
             {services[currentLang].filter((service) => service.id != id).slice(0, 4).map((service) => (
                 <div key={service.id} className=" bg-white border border-gray-200 rounded-lg shadow-sm"> 
