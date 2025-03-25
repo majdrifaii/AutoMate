@@ -16,8 +16,21 @@ export const LanguageProvider = ({ children }) => {
   const [currentLang, setCurrentLang] = useState('en');
   const isRTL = currentLang === 'ar';
 
+  const ServicesImages = import.meta.glob("/src/assets/**/*.{png,jpg,jpeg,gif}", {
+    eager: true,
+  });
+
+  const BlogsImages = import.meta.glob("/public/blogImages/**/*.{png,jpg,jpeg,gif}", {
+    eager: true,
+  });
+  
   const importImages = (imagePath) => {
-    return new URL(`${imagePath}`, import.meta.url).href;
+    const imageModule = ServicesImages[imagePath] || BlogsImages[imagePath];
+    if (!imageModule) {
+      console.error(`Image not found: ${imagePath}`);
+      return "";
+    }
+    return imageModule.default; // Vite returns the URL of the asset
   };
 
 
