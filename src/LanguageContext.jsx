@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useRef } from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import Custom from './assets/WhyChooseUs/Customized Automation Solutions .png';
 import Trust from './assets/WhyChooseUs/Building Lasting Trust with Our Clients..png';
 import Scale from './assets/WhyChooseUs/Scalable Solutions.png';
@@ -15,6 +15,10 @@ const LanguageContext = createContext();
 export const LanguageProvider = ({ children }) => {
   const [currentLang, setCurrentLang] = useState('en');
   const isRTL = currentLang === 'ar';
+
+  const importImages = (imagePath) => {
+    return new URL(`${imagePath}`, import.meta.url).href;
+  };
 
 
   const translations = {
@@ -33,7 +37,7 @@ export const LanguageProvider = ({ children }) => {
         bookButton: 'Book Free Consultation',
         exploreButton: 'Explore Our Services'
       },
-      services: ['Content Creation', 'Marketing Campaigns', 'AI Customer Service Bot', 'Social Media Management', 'Startup Business Plans', 'Web Development']
+      services: ['Marketing Campaigns', 'AI Customer Service Bot', 'Social Media Management', 'Startup Business Plans', 'Web Development', 'Content Creation']
     },
     ar: {
       footer: {
@@ -44,13 +48,13 @@ export const LanguageProvider = ({ children }) => {
       },
       hero: {
         title: 'دع العمل يتم بواسطة autoMATE',
-        subtitle: 'قم بتمكين عملك من خلال حلول الذكاء الاصطناعي والأتمتة المتطورة التي تدفع الكفاءة والابتكار.',
+        subtitle: 'قم بتطوير عملك من خلال حلول الذكاء الاصطناعي و الأتمتة المتطورة التي تقدمها أوتوميت لعملك.',
         consultation: 'احصل على استشارة مجانية مخصصة للأتمتة',
-        consultationDesc: 'سيقوم خبراؤنا بتحليل عمليات عملك وتصميم استراتيجية أتمتة مخصصة',
+        consultationDesc: 'سيقوم خبراؤنا بتحليل عملك وتصميم استراتيجية أتمتة مخصصة',
         bookButton: 'احجز استشارة مجانية',
         exploreButton: 'استكشف خدماتنا'
       },
-      services: ['إنشاء المحتوى', 'حملات تسويقية', 'روبوت خدمة العملاء الذكي', 'إدارة وسائل التواصل الاجتماعي', 'خطط الأعمال للشركات الناشئة', 'تطوير المواقع الإلكترونية']
+      services: ['حملات تسويقية', 'روبوت خدمة العملاء الذكي', 'إدارة وسائل التواصل الاجتماعي', 'خطط الأعمال للشركات الناشئة', 'تطوير المواقع الإلكترونية', 'إنشاء المحتوى']
     }
   };
 
@@ -205,7 +209,7 @@ export const LanguageProvider = ({ children }) => {
   };
 
   return (
-    <LanguageContext.Provider value={{ currentLang, setCurrentLang, isRTL, translations, whyChooseUsCards, portfolioSlides, faqs }}>
+    <LanguageContext.Provider value={{ currentLang, setCurrentLang, isRTL, translations, whyChooseUsCards, portfolioSlides, faqs, importImages }}>
       {children}
     </LanguageContext.Provider>
   );

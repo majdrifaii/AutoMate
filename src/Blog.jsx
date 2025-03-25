@@ -5,7 +5,7 @@ import { FaRobot } from 'react-icons/fa';
 
 const Blog = () => {
     const { id } = useParams();
-    const { currentLang, isRTL} = useLanguage();
+    const { currentLang, isRTL, importImages } = useLanguage();
     const blog = blogs[currentLang].find((blog) => blog.id == id);
 
     
@@ -23,7 +23,7 @@ const Blog = () => {
         <section className={`bg-slate-50 py-20 ${currentLang == 'en' ? 'font-family-english' : 'font-family-arabic'}`} dir={isRTL ? 'rtl' : 'ltr'}>
                 <div key={blog.id} className='max-w-xl sm:max-w-2xl md:max-w-3xl lg:max-w-7xl px-5 mx-auto mt-10 mb-10 items-center'>
                         <h1 className='w-full md:w-2/3 text-secondary text-2xl md:text-4xl mb-5 font-semibold font-sans'>{blog.title}</h1>
-                        <img src={blog.image} alt="" className="w-full h-[400px] object-cover rounded-lg" />
+                        <img src={importImages(blog.image)} alt="" className="w-full h-[400px] object-cover rounded-lg" />
                         <div className='flex justify-between items-center mt-5 mb-2.5'>
                             <h4 className='text-sm md:text-[17px]'>
                             {currentLang === 'en' ? (
