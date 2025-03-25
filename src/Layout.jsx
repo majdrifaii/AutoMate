@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Logo from '../public/data/icon/autoMate.png';
+import Logo from '../public/icon/autoMate.png';
 import { useLanguage } from './LanguageContext';
 import { FaBars, FaChevronUp, FaChevronDown, FaFacebook, FaInstagram, FaLinkedin, FaPen, FaBullhorn, FaRobot, FaShareAlt, FaClipboardList, FaCode } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';

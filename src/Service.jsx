@@ -4,7 +4,7 @@ import { FaArrowRight,FaArrowLeft } from 'react-icons/fa';
 import { useLanguage } from "./LanguageContext";
 
 const Service = () => {
-    const { currentLang, isRTL } = useLanguage();
+    const { currentLang, isRTL, importImages } = useLanguage();
     const { id } = useParams();
     const service = services[currentLang].find((service) => service.id == id);
 
@@ -22,7 +22,7 @@ const Service = () => {
         <div className={`pt-20 bg-slate-50 ${isRTL ? 'rtl font-arabic' : 'ltr font-english'}`} dir={isRTL ? 'rtl' : 'ltr'}>
            <section className="bg-white">
             <div className="gap-8 items-center py-8 px-4 mx-auto w-11/12 xl:gap-16 grid lg:grid-cols-2 sm:py-10 lg:px-6">
-                <img className="w-full lg:h-full object-cover rounded-md" src={service.image} alt={service.name} />
+                <img className="w-full lg:h-full object-cover rounded-md" src={importImages(service.image)} alt={service.name} />
                 <div className="mt-4 md:mt-0">
                     <h1 className="mb-4 text-3xl md:text-5xl tracking-tight font-extrabold text-secondary">{service.name}</h1>
                     {service.description.map((des, index) => (
@@ -50,7 +50,7 @@ const Service = () => {
             {services[currentLang].filter((service) => service.id != id).slice(0, 4).map((service) => (
                 <div key={service.id} className=" bg-white border border-gray-200 rounded-lg shadow-sm"> 
                     <div className="">
-                        <img className="w-full rounded-tl-md rounded-tr-md" src={service.image} alt={service.name} />
+                        <img className="w-full rounded-tl-md rounded-tr-md" src={importImages(service.image)} alt={service.name} />
                     </div>
                     <div className="p-5">
                         <div className="h-20">
