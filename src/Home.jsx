@@ -39,10 +39,10 @@ const Home = () => {
 };
 
   const Settings = {
-    dots: true,
+    dots: false,
     arrows: true,
     infinite: true,
-    speed: 1500,
+    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
