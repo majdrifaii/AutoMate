@@ -3,7 +3,7 @@ import Logo from '../public/data/icon/autoMATE.png';
 import { useLanguage } from './LanguageContext';
 import { FaBars, FaChevronUp, FaChevronDown, FaFacebook, FaInstagram, FaLinkedin, FaPen, FaBullhorn, FaRobot, FaShareAlt, FaClipboardList, FaCode } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
-import ScrollToTop from './scrollToTop';
+import ScrollToTop from './ScrollToTop';
 import { MdLocationPin } from "react-icons/md";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
