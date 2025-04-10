@@ -7,15 +7,19 @@ import ScrollToTop from './ScrollToTop';
 import { MdLocationPin } from "react-icons/md";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
+import { FaGlobe } from "react-icons/fa";
+
 
 
 
 const Layout = ({ children }) => {
-  const { currentLang, setCurrentLang, isRTL, translations} = useLanguage();
+  const { currentLang, setCurrentLang, isRTL, translations } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
   const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false);
   const contactRef = useRef(null);
+  let langDropdownTimeout;
+  let serviceDropdownTimeout;
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -47,182 +51,216 @@ const Layout = ({ children }) => {
 
   return (
     <>
-    <ScrollToTop />
-      <header className={`fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100 ${currentLang === 'en' ? 'font-family-english' : 'font-family-arabic'}`}>
+      <ScrollToTop />
+      <header
+        className={`fixed top-0 left-0 right-0 bg-white/90 backdrop-blur-sm z-50 border-b border-gray-100 ${
+          isRTL ? "font-family-arabic" : "font-family-english"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            <Link to={'/'} className="flex items-center">
+            <Link to={"/"} className="flex items-center">
               <img src={Logo} alt="autoMATE" className="h-50" />
             </Link>
-            <nav className={`hidden md:flex items-center ${isRTL ? 'space-x-reverse space-x-8' : 'space-x-10'}`}>
+  
+            {/* NAVIGATION - Centered & Evenly Spaced */}
+            <div >
+              <nav
+                dir={isRTL ? "rtl" : "ltr"}
+                className="hidden md:flex flex-1 justify-between gap-6 mr-[120px]"
+              >
                 <Link
-                  to={'/'}
-                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
+                  to="/"
+                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer px-4"
                 >
-                  {currentLang === 'en' ? 'Home' : 'الرئيسية'}
+                  {isRTL ? "الرئيسية" : "Home"}
                 </Link>
                 <Link
-                  to={'/blogs'}
-                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
+                  to="/blogs"
+                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer px-4"
                 >
-                  {currentLang === 'en' ? 'Blogs' : 'مقالات'}
+                  {isRTL ? "مقالات" : "Blogs"}
                 </Link>
-
-                <div className='relative'>
-                <button
-                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
-                  onClick={() => setIsServiceDropdownOpen(!isServiceDropdownOpen)}
+  
+                {/* Services Dropdown */}
+                <div
+                  className="relative"
+                  onMouseEnter={() => {
+                    clearTimeout(serviceDropdownTimeout);
+                    setIsServiceDropdownOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    serviceDropdownTimeout = setTimeout(
+                      () => setIsServiceDropdownOpen(false),
+                      200
+                    );
+                  }}
                 >
-                  {currentLang === 'en' ? 'Services' : 'الخدمات'}
-                </button>
-                {isServiceDropdownOpen && (
-                  <div
-                    className="absolute -left-28 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 border border-gray-50 z-50"
-                    // onMouseLeave={() => setIsServiceDropdownOpen(false)}
-                  >
-                    {translations[currentLang].services.map((service, index) => (
-                    <Link
-                    key={index}
-                    to={`/service/${service}/${index + 1}`}
-                      onClick={() => {
-                        setIsServiceDropdownOpen(false);
-                      }}
-                      className={`block w-full text-left px-4 py-3 text-secondary hover:bg-gray-50 hover:text-accent transition-colors duration-200 cursor-pointer`}
-                    >
-                      {serviceIcons[service]}
-                      {service}
-                    </Link>
-                    ))}
-                  </div>
-                )}
+                  <button className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2">
+                    {currentLang === "en" ? "Services" : "الخدمات"}
+                  </button>
+  
+                  {isServiceDropdownOpen && (
+                    <div className="absolute left-0 mt-2 w-80 bg-white rounded-lg shadow-lg py-2 border border-gray-50 z-50">
+                      {translations[currentLang].services.map((service, index) => (
+                        <Link
+                          key={index}
+                          to={`/service/${service}/${index + 1}`}
+                          className="block w-full text-left px-4 py-3 text-secondary hover:bg-gray-50 hover:text-accent transition-colors duration-200 cursor-pointer"
+                        >
+                          {serviceIcons[service]} {service}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
                 </div>
+  
                 <button
-                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer whitespace-nowrap px-2"
-                  onClick={scrollToContact}
+                  className="text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer px-4"
+                  onClick={() => alert("Contact Us")}
                 >
-                  {currentLang === 'en' ? 'Contact Us' : 'اتصل بنا'}
+                  {isRTL ? "اتصل بنا" : "Contact Us"}
                 </button>
-
-
-
-
-
-              <div className="relative">
-                <button
-                  className="flex items-center space-x-2 text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer mx-5"
-                  onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
+              </nav>
+            </div>
+  
+            {/* LANGUAGE SWITCHER - Always on the Right */}
+            <div className="relative flex items-center justify-end w-[50px]" dir="ltr">
+              <div
+                className="relative"
+                onMouseEnter={() => {
+                  clearTimeout(langDropdownTimeout);
+                  setIsLangDropdownOpen(true);
+                }}
+                onMouseLeave={() => {
+                  langDropdownTimeout = setTimeout(() => setIsLangDropdownOpen(false), 200);
+                }}
+              >
+                <button className="hidden md:block mr-[70px] text-secondary hover:text-accent transition-colors duration-200 font-medium cursor-pointer">
+                  <FaGlobe className="text-lg" />
+                </button>
+  
+                {/* Language Dropdown */}
+                <div
+                  className={`absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg py-2 border border-gray-100 z-50 ${
+                    isLangDropdownOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+                  } transition-opacity duration-200`}
                 >
-                  <span>{currentLang === 'en' ? 'ENG' : 'عربي'}</span>
-                  {isLangDropdownOpen ? <FaChevronUp className='text-sm transition-transform duration-200' /> : <FaChevronDown className='text-sm transition-transform duration-200' />}
-                </button>
-                {isLangDropdownOpen && (
-                  <div
-                    className="absolute right-0 mt-2 w-32 bg-white rounded-lg shadow-lg py-2 border border-gray-100 z-50"
-                    onMouseLeave={() => setIsLangDropdownOpen(false)}
+                  <button
+                    onClick={() => {
+                      setCurrentLang("en");
+                      setIsLangDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-4 py-2 ${
+                      currentLang === "en" ? "text-accent bg-gray-50" : "text-gray-700"
+                    } hover:bg-gray-50 hover:text-accent transition-colors duration-200`}
                   >
-                    <button
-                      onClick={() => {
-                        setCurrentLang('en');
-                        setIsLangDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2 ${currentLang === 'en' ? 'text-accent bg-gray-50' : 'text-gray-700'} hover:bg-gray-50 hover:text-accent transition-colors duration-200`}
-                    >
-                      English
-                    </button>
-                    <button
-                      onClick={() => {
-                        setCurrentLang('ar');
-                        setIsLangDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2 ${currentLang === 'ar' ? 'text-accent bg-gray-50' : 'text-gray-700'} hover:bg-gray-50 hover:text-accent transition-colors duration-200`}
-                    >
-                      العربية
-                    </button>
-                  </div>
-                )}
+                    English
+                  </button>
+                  <button
+                    onClick={() => {
+                      setCurrentLang("ar");
+                      setIsLangDropdownOpen(false);
+                    }}
+                    className={`w-full text-left px-4 py-2 ${
+                      currentLang === "ar" ? "text-accent bg-gray-50" : "text-gray-700"
+                    } hover:bg-gray-50 hover:text-accent transition-colors duration-200`}
+                  >
+                    العربية
+                  </button>
+                </div>
               </div>
-            </nav>
-            <button
+              <button
               className="md:hidden text-secondary hover:scale-105 hover:text-accent transition-all duration-300 cursor-pointer mx-7"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               <FaBars className="text-2xl" />
             </button>
+            </div>
           </div>
         </div>
-      </header>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className={`md:hidden fixed top-20 left-0 right-0 bg-white z-50 border-b border-gray-200 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`}>
-          <div className="py-5">
+  
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div
+            className={`md:hidden fixed top-20 left-0 right-0 bg-white z-50 border-b border-gray-200 ${
+              currentLang === "en" ? "font-english" : "font-arabic"
+            }`}
+          >
+            <div className="py-5">
               <Link
-                  to={'/'}
-                  className="w-full block py-4 text-secondary hover:text-accent hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {currentLang === 'en' ? 'Home' : 'الرئيسية'}
-                </Link>
-                <Link
-                  to={'/blogs'}
-                  className="w-full block py-4 text-secondary hover:text-accent hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {currentLang === 'en' ? 'Blogs' : 'مقالات'}
-                </Link>
-                <button
-                  className="w-full block py-4 text-left text-secondary hover:text-accent hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
-                  onClick={() => setIsServiceDropdownOpen(!isServiceDropdownOpen)}
-                >
-                  {currentLang === 'en' ? 'Services' : 'الخدمات'}
-                </button>
-                {isServiceDropdownOpen && (
-                  <>
+                to={"/"}
+                className="w-full block py-4 text-secondary hover:text-accent hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {currentLang === "en" ? "Home" : "الرئيسية"}
+              </Link>
+              <Link
+                to={"/blogs"}
+                className="w-full block py-4 text-secondary hover:text-accent hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {currentLang === "en" ? "Blogs" : "مقالات"}
+              </Link>
+              <button
+                className="w-full block py-4 text-left text-secondary hover:text-accent hover:bg-gray-50 transition-colors duration-200 font-medium cursor-pointer px-4"
+                onClick={() => setIsServiceDropdownOpen(!isServiceDropdownOpen)}
+              >
+                {currentLang === "en" ? "Services" : "الخدمات"}
+              </button>
+              {isServiceDropdownOpen && (
+                <>
                   {translations[currentLang].services.map((service, index) => (
                     <Link
-                    key={index}
-                    to={`/service/${service}/${index + 1}`}
+                      key={index}
+                      to={`/service/${service}/${index + 1}`}
                       onClick={() => {
                         setIsServiceDropdownOpen(false);
-                        setIsMenuOpen(false)
+                        setIsMenuOpen(false);
                       }}
-                      className={`block w-full text-left px-10 py-2 text-secondary hover:bg-gray-50 hover:text-accent transition-colors duration-200 cursor-pointer`}
+                      className="block w-full text-left px-10 py-2 text-secondary hover:bg-gray-50 hover:text-accent transition-colors duration-200 cursor-pointer"
                     >
                       {serviceIcons[service]}
                       {service}
                     </Link>
-                    ))}
-                  </>
-                )}
-            <div className="py-3 px-4 border-t border-gray-100">
-              <div className="flex items-center justify-between">
-                <span className="text-secondary font-medium">Language</span>
-                <div className="flex space-x-4">
-                  <button
-                    onClick={() => {
-                      setCurrentLang('en');
-                      setIsMenuOpen(false);
-                    }}
-                    className={`${currentLang === 'en' ? 'text-accent' : 'text-secondary'} font-medium hover:text-accent transition-colors duration-200`}
-                  >
-                    ENG
-                  </button>
-                  <button
-                    onClick={() => {
-                      setCurrentLang('ar');
-                      setIsMenuOpen(false);
-                    }}
-                    className={`${currentLang === 'ar' ? 'text-accent' : 'text-secondary'} font-medium hover:text-accent transition-colors duration-200`}
-                  >
-                    عربي
-                  </button>
+                  ))}
+                </>
+              )}
+              <div className="py-3 px-4 border-t border-gray-100">
+                <div className="flex items-center justify-between">
+                  <span className="text-secondary font-medium"><FaGlobe/></span>
+                  <div className="flex space-x-4">
+                    <button
+                      onClick={() => {
+                        setCurrentLang("en");
+                        setIsMenuOpen(false);
+                      }}
+                      className={`${
+                        currentLang === "en" ? "text-accent" : "text-secondary"
+                      } font-medium hover:text-accent transition-colors duration-200`}
+                    >
+                      ENG
+                    </button>
+                    <button
+                      onClick={() => {
+                        setCurrentLang("ar");
+                        setIsMenuOpen(false);
+                      }}
+                      className={`${
+                        currentLang === "ar" ? "text-accent" : "text-secondary"
+                      } font-medium hover:text-accent transition-colors duration-200`}
+                    >
+                      عربي
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
-
+        )}
+      </header>
+  
+  
       <main className="">{children}</main>
 
       <footer className={`bg-white text-black text-center items-center py-16 ${currentLang === 'en' ? 'font-english' : 'font-arabic'}`} ref={contactRef}>
@@ -230,7 +268,7 @@ const Layout = ({ children }) => {
           <div className="grid md:grid-cols-4 gap-8">
             <div className='flex flex-col justify-start items-center'>
               <img src={Logo} alt="autoMATE" className="h-56 mb-3" />
-      
+
             </div>
             <div>
               <h3 className={`text-xl font-bold mb-4 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
@@ -276,24 +314,24 @@ const Layout = ({ children }) => {
                 {translations[currentLang].footer.followUs}
               </h3>
               <div className="flex justify-center items-center space-x-10 mt-10">
-                  <a
-                    href=''
-                    className="text-gray-500 hover:text-accent transition-colors duration-200 cursor-pointer"
-                  >
-                    <FaFacebook className="text-3xl" />
-                  </a>
-                  <a
-                    href=""
-                    className="text-gray-500 hover:text-accent transition-colors duration-200 cursor-pointer"
-                  >
-                    <FaInstagram className="text-3xl" />
-                  </a>
-                  <a
-                    href=""
-                    className="text-gray-500 hover:text-accent transition-colors duration-200 cursor-pointer"
-                  >
-                    <FaLinkedin className="text-3xl" />
-                  </a>
+                <a
+                  href=''
+                  className="text-gray-500 hover:text-accent transition-colors duration-200 cursor-pointer"
+                >
+                  <FaFacebook className="text-3xl" />
+                </a>
+                <a
+                  href=""
+                  className="text-gray-500 hover:text-accent transition-colors duration-200 cursor-pointer"
+                >
+                  <FaInstagram className="text-3xl" />
+                </a>
+                <a
+                  href=""
+                  className="text-gray-500 hover:text-accent transition-colors duration-200 cursor-pointer"
+                >
+                  <FaLinkedin className="text-3xl" />
+                </a>
               </div>
             </div>
           </div>
