@@ -10,8 +10,7 @@ const Blogs = () => {
         <section className="bg-slate-50" dir={isRTL ? 'rtl' : 'ltr'}>
             <div className="px-4 mx-auto max-w-screen-xl py-28 lg:px-6">
                 <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
-                    <h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-secondary">{currentLang == 'en' ? 'Our Blog' : 'مقالاتنا'}</h2>
-                    <p className="font-light text-gray-500 sm:text-xl">{currentLang == 'en' ? 'We use an agile approach to test assumptions and connect with the needs of your audience early and often.' : 'نحن نستخدم نهجًا رشيقًا لاختبار الافتراضات والتواصل مع احتياجات جمهورك في وقت مبكر وبشكل متكرر.'}</p>
+                    <h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-secondary">{currentLang == 'en' ? 'Our Blogs' : 'مقالاتنا'}</h2>
                 </div> 
                 <div className="grid gap-8 lg:grid-cols-2">
                     {blogs[currentLang].map((blog, index) => (

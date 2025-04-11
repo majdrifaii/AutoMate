@@ -114,7 +114,7 @@ const Home = () => {
         className="py-20 bg-white"
         ref={serviceRef}
       >
-        <div className="max-w-7xl mx-auto px-4">
+        <div id='services' className="max-w-7xl mx-auto px-4">
           <h2 className={`text-secondary text-4xl font-bold text-center mb-16 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
             {currentLang === 'ar' ? 'خدماتنا' : 'Our Services'}
           </h2>
@@ -182,7 +182,7 @@ const Home = () => {
       >
         <div className="max-w-7xl mx-auto px-4">
           <h2 className={`text-secondary text-4xl font-bold text-center mb-16 ${currentLang === 'ar' ? 'font-arabic' : ''}`}>
-            {currentLang === 'ar' ? 'لماذا تختارنا' : 'Why Choose Us'}
+            {currentLang === 'ar' ? '?لماذا تختارنا' : 'Why Choose Us'}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             {whyChooseUsCards[currentLang].map((card, index) => (
@@ -217,7 +217,7 @@ const Home = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-secondary text-3xl sm:text-4xl font-bold text-center mb-8 sm:mb-10">
-            {currentLang === 'ar' ? 'من نحن' : 'About Us'}
+            {currentLang === 'ar' ? '?من نحن' : 'About Us'}
           </h2>
           <Slider {...Settings}>
             {portfolioSlides[currentLang].map((slide, index) => (
