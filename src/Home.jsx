@@ -90,10 +90,10 @@ const Home = () => {
               </p>
             </div>
             <div className={`flex flex-wrap gap-4 ${isRTL ? 'justify-end' : ''}`}>
-              <button className="bg-[#01C38D] hover:bg-[#00A677] text-white px-8 py-3 rounded-md transition-colors duration-200 cursor-pointer whitespace-nowrap">
+              <Link to={'form'} className="bg-[#01C38D] hover:bg-[#00A677] text-white px-8 py-3 rounded-md transition-colors duration-200 cursor-pointer whitespace-nowrap">
                 <FaCalendarCheck className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 {translations[currentLang].hero.bookButton}
-              </button>
+              </Link>
               <button
                 className="bg-white text-[#0051B6] px-8 py-3 rounded-md transition-colors duration-200 hover:bg-gray-100 cursor-pointer whitespace-nowrap"
                 onClick={scrollToService}
@@ -289,10 +289,10 @@ const Home = () => {
               </div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-              <button className="bg-white text-secondary px-6 py-4 rounded-md hover:bg-gray-200 transition-colors duration-200 text-lg font-semibold whitespace-nowrap cursor-pointer">
+              <Link to={'form'} className="bg-white text-secondary px-6 py-4 rounded-md hover:bg-gray-200 transition-colors duration-200 text-lg font-semibold whitespace-nowrap cursor-pointer">
                 <FaCalendarCheck className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 {currentLang === 'ar' ? 'احجز استشارة مجانية' : 'Book a Free Consultant'}
-              </button>
+              </Link>
             </div>
           </div>
         </div>

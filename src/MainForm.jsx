@@ -1,0 +1,245 @@
+// App.jsx
+import { useState, useEffect } from 'react';
+
+function Step1({ meetingType, setMeetingType, setCurrentStep, meetingTypes }) {
+  return (
+    <div>
+      <h2 className="mb-2 text-lg font-semibold">Choose Meeting Type</h2>
+      <div className="space-y-2">
+        {meetingTypes.map((type, idx) => (
+          <button
+            key={idx}
+            className={`block w-full border p-2 rounded text-left transition hover:bg-indigo-100 ${
+              meetingType.name === type.name ? 'bg-indigo-600 text-white' : 'bg-white'
+            }`}
+            onClick={() => {
+              setMeetingType(type);
+              setCurrentStep(2);
+            }}
+          >
+            {type.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+
+function Step2({ calendarDays, selectedDate, setSelectedDate, setCurrentStep, handlePrevMonth, handleNextMonth, currentMonth, currentYear }) {
+  const monthName = new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long', year: 'numeric' });
+
+  return (
+    <div>
+      <h2 className="mb-2 text-lg font-semibold">Select Date:</h2>
+      <div className="flex justify-between items-center mb-3">
+        <button onClick={handlePrevMonth} className="px-3 py-1 border rounded">Prev</button>
+        <span className="font-medium">{monthName}</span>
+        <button onClick={handleNextMonth} className="px-3 py-1 border rounded">Next</button>
+      </div>
+      <div className="grid grid-cols-7 gap-2">
+        {calendarDays.map((day, idx) => (
+          <button
+            key={idx}
+            disabled={day.disabled}
+            className={`p-2 border rounded ${day.disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} ${selectedDate?.getDate() === day.day && !day.disabled ? 'bg-indigo-600 text-white' : ''}`}
+            onClick={() => {
+              setSelectedDate(day.date);
+              setCurrentStep(3);
+            }}
+          >
+            {day.day || ''}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+
+function Step3({ selectedDate, timeSlots, selectedTime, setSelectedTime, formData, handleFormChange, handleSubmit, isLoading }) {
+  const formattedDate = selectedDate?.toLocaleDateString('en-US', {
+    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+  });
+
+  return (
+    <div>
+      <h2 className="mb-2 text-lg font-semibold">Select Time:</h2>
+      <p className="mb-2 text-sm text-gray-600">Date: {formattedDate}</p>
+      <div className="grid grid-cols-3 gap-2 mb-4">
+        {timeSlots.map((slot, idx) => (
+          <button
+            key={idx}
+            disabled={slot.disabled}
+            className={`p-2 border rounded text-sm ${slot.disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} ${selectedTime === slot.time ? 'border-indigo-600 text-indigo-600' : ''}`}
+            onClick={() => setSelectedTime(slot.time)}
+          >
+            {slot.time}
+          </button>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-3">
+        <input type="text" name="firstName" placeholder="First Name" className="w-full border p-2 rounded" onChange={handleFormChange} value={formData.firstName} required />
+        <input type="text" name="lastName" placeholder="Last Name" className="w-full border p-2 rounded" onChange={handleFormChange} value={formData.lastName} required />
+        <input type="email" name="email" placeholder="Email" className="w-full border p-2 rounded" onChange={handleFormChange} value={formData.email} required />
+        <input type="tel" name="phone" placeholder="Phone" className="w-full border p-2 rounded" onChange={handleFormChange} value={formData.phone} required />
+        <textarea name="notes" placeholder="Notes (optional)" className="w-full border p-2 rounded" onChange={handleFormChange} value={formData.notes} />
+        <button type="submit" className="bg-indigo-600 text-white p-2 rounded w-full" disabled={isLoading}>{isLoading ? 'Booking...' : 'Book Appointment'}</button>
+      </form>
+    </div>
+  );
+}
+
+
+function Step4({ bookingData, resetBooking }) {
+  return (
+    <div className="text-center">
+      <h2 className="text-2xl font-bold mb-2">Booking Confirmed!</h2>
+      <p className="mb-4 text-green-600">Your booking has been saved successfully.</p>
+      <div className="border mt-4 p-4 text-left inline-block bg-gray-50 rounded-md shadow-md">
+        <p><strong>Name:</strong> {bookingData.firstName} {bookingData.lastName}</p>
+        <p><strong>Meeting Type:</strong> {bookingData.meetingType}</p>
+        <p><strong>Date:</strong> {bookingData.date}</p>
+        <p><strong>Time:</strong> {bookingData.time}</p>
+        <p><strong>Phone:</strong> {bookingData.phone}</p>
+      </div>
+      <button onClick={resetBooking} className="mt-6 bg-indigo-600 text-white p-2 rounded">Book Another</button>
+    </div>
+  );
+}
+
+
+
+
+function MainForm() {
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxyJv5NO7Yxom28cBY6lqPRlyhes3Qq75b5a6tJh1tmCSpa5HNBFIoUflmkK9dKsCwb4w/exec";
+
+  const [currentStep, setCurrentStep] = useState(1);
+  const [meetingType, setMeetingType] = useState('');
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTime, setSelectedTime] = useState(null);
+  const [bookingData, setBookingData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [calendarDays, setCalendarDays] = useState([]);
+  const [timeSlots, setTimeSlots] = useState([]);
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    notes: ''
+  });
+
+  const meetingTypes = [
+    { name: 'Consultation' },
+    { name: 'Technical Support' },
+    { name: 'Follow-up' }
+  ];
+
+  useEffect(() => {
+    const firstDay = new Date(currentYear, currentMonth, 1);
+    const lastDay = new Date(currentYear, currentMonth + 1, 0);
+    const days = [];
+    for (let i = 0; i < firstDay.getDay(); i++) {
+      days.push({ day: null, disabled: true });
+    }
+    for (let day = 1; day <= lastDay.getDate(); day++) {
+      const dateObj = new Date(currentYear, currentMonth, day);
+      days.push({
+        day,
+        disabled: dateObj < new Date().setHours(0, 0, 0, 0),
+        date: dateObj
+      });
+    }
+    setCalendarDays(days);
+  }, [currentMonth, currentYear]);
+
+  useEffect(() => {
+    if (selectedDate) {
+      const slots = [];
+      for (let hour = 9; hour < 17; hour++) {
+        for (let minute = 0; minute < 60; minute += 30) {
+          const timeString = `${hour % 12 || 12}:${minute.toString().padStart(2, '0')} ${hour >= 12 ? 'PM' : 'AM'}`;
+          const isBooked = Math.random() > 0.7;
+          slots.push({ time: timeString, disabled: isBooked });
+        }
+      }
+      setTimeSlots(slots);
+    }
+  }, [selectedDate]);
+
+  const handlePrevMonth = () => {
+    setCurrentMonth(currentMonth === 0 ? 11 : currentMonth - 1);
+    if (currentMonth === 0) setCurrentYear(currentYear - 1);
+  };
+
+  const handleNextMonth = () => {
+    setCurrentMonth(currentMonth === 11 ? 0 : currentMonth + 1);
+    if (currentMonth === 11) setCurrentYear(currentYear + 1);
+  };
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !selectedTime) return;
+    setIsLoading(true);
+    try {
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          meetingType: meetingType?.name,
+          date: selectedDate.toLocaleDateString('en-US'),
+          time: selectedTime,
+          notes: formData.notes || "No notes provided"
+        })
+      });
+      setBookingData({
+        ...formData,
+        meetingType: meetingType?.name,
+        date: selectedDate.toLocaleDateString('en-US', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        }),
+        time: selectedTime
+      });
+      setCurrentStep(4);
+    } catch (err) {
+      console.error(err);
+      alert("Error saving booking. Try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const resetBooking = () => {
+    setCurrentStep(1);
+    setMeetingType(null);
+    setSelectedDate(null);
+    setSelectedTime(null);
+    setBookingData({});
+    setFormData({ firstName: '', lastName: '', email: '', phone: '', notes: '' });
+  };
+
+  return (
+    <div className="p-6 pt-30 max-w-xl mx-auto font-sans">
+      <h1 className="text-2xl font-bold mb-4">Appointment Booking</h1>
+      {currentStep === 1 && <Step1 meetingType={meetingType} setMeetingType={setMeetingType} setCurrentStep={setCurrentStep} meetingTypes={meetingTypes} />}
+      {currentStep === 2 && <Step2 calendarDays={calendarDays} selectedDate={selectedDate} setSelectedDate={setSelectedDate} setCurrentStep={setCurrentStep} handlePrevMonth={handlePrevMonth} handleNextMonth={handleNextMonth} currentMonth={currentMonth} currentYear={currentYear} />}
+      {currentStep === 3 && <Step3 selectedDate={selectedDate} timeSlots={timeSlots} selectedTime={selectedTime} setSelectedTime={setSelectedTime} formData={formData} handleFormChange={handleFormChange} handleSubmit={handleSubmit} isLoading={isLoading} />}
+      {currentStep === 4 && <Step4 bookingData={bookingData} resetBooking={resetBooking} />}
+    </div>
+  );
+}
+
+export default MainForm;
