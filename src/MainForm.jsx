@@ -191,7 +191,7 @@ function MainForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !selectedTime) return;
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !selectedTime){alert('Please fill in all required fields, including meeting type.'); return};
     setIsLoading(true);
     try {
       await fetch(GOOGLE_SCRIPT_URL, {
@@ -224,7 +224,7 @@ function MainForm() {
 
   const resetBooking = () => {
     setCurrentStep(1);
-    setMeetingType(null);
+    setMeetingType('');
     setSelectedDate(null);
     setSelectedTime(null);
     setBookingData({});
