@@ -37,10 +37,18 @@
     },
     {
       "id": 6,
-      "name": "Content Creation",
-      "title" : "AI-powered content creation and optimization for engaging, SEO-friendly digital content.",
-      "description": ["Do you struggle to create content that reflects your company’s professionalism and identity?", "With autoMATE, content creation has become easier and more innovative than ever before.", "We offer: Professional Product Photography: Highlighting the features of your products and presenting them in the best light on social media.", "Comprehensive Digital Content Design: From daily posts to short videos and even professional long-form video production.", "Innovative and Captivating Advertisements: Using designs that blend reality and imagination to create unforgettable ads. ", "Showcasing Your Brand Identity: Crafting content that mirrors your brand's personality and attracts your target audience. ", "At autoMATE, we transform your ideas into inspiring content that boosts your digital presence.", "Let’s bring your vision to life!"],
-      "image": "/src/assets/Services/Content.png"
+      "name": "AI Automation",
+      "title" : "Transform Your Business with autoMATE AI Automation Solutions",
+          "description": [
+      "Are you struggling to streamline your business operations and enhance efficiency?",
+      "With autoMATE AI Automation, we understand your challenges and provide innovative solutions to achieve your goals effortlessly.",
+      "Streamlined Business Processes: Eliminate repetitive tasks with our automation tools, freeing your team to focus on what truly matters.",
+      "Intelligent Data Insights: Transform raw data into actionable insights with our advanced data analysis tailored to your business needs.",
+      "24/7 Automated Customer Support: Boost customer satisfaction with smart chat solutions that offer instant assistance, ensuring clients feel valued.",
+      "Personalized Customer Experiences: Engage your audience with tailored interactions based on their preferences to foster loyalty and increase retention.",
+      "Elevate your business now with autoMATE!"
+    ],
+      "image": "/src/assets/Services/Ai-automation.png"
     }
   ],
   "ar": [
@@ -134,19 +142,25 @@
     },
     {
       "id": 6,
-      "name": "إنشاء المحتوى",
-      "title" : "إنشاء المحتوى الجذاب و المتوافق مع محركات البحث.",
-      "description": [
-  "صناعة المحتوى باحترافية مع أوتوميت هل تجد صعوبة في إنشاء محتوى يعكس احترافية شركتك وهويتها؟",
+      "name": "اتمتة الاعمال بالذكاء الاصطناعي",
+      "title" : "حوّل أعمالك مع حلول أتمتة أوتوميت الذكية",
+"description": [
+  "هل تجد صعوبة في إنشاء محتوى يعكس احترافية شركتك وهويتها؟",
   "مع أوتوميت، صناعة المحتوى أصبحت أكثر سهولة وإبداعاً من أي وقت مضى.",
   "نحن نقدم: تصوير احترافي للمنتجات: لتسليط الضوء على ميزات منتجاتك وعرضها بأفضل صورة على السوشال ميديا.",
   "تصميم محتوى رقمي شامل: من المنشورات اليومية إلى الفيديوهات القصيرة وحتى الإنتاج الاحترافي للفيديوهات الطويلة.",
   "إعلانات مبتكرة وجذابة: باستخدام تصاميم تدمج بين الواقع والخيال لإنشاء إعلانات لا تُنسى.",
   "إبراز هوية علامتك التجارية: من خلال محتوى يعكس شخصيتك ويجذب جمهورك المستهدف.",
+  "هل تواجه صعوبة في تبسيط عملياتك التجارية وزيادة الكفاءة؟",
+  "باستخدام خدمة autoMATE AI Automation، نحن نفهم التحديات التي تواجهها. تم تصميم حلولنا المبتكرة لمساعدتك في التغلب على هذه العقبات وتحقيق أهدافك بسهولة.",
+  "تبسيط العمليات التجارية: وداعًا للمهام الروتينية. أدوات الأتمتة الخاصة بنا تبسط سير العمل، مما يسمح لفريقك بالتركيز على ما يهم حقًا.",
+  "رؤى بيانات ذكية: اتخذ قرارات مستنيرة مع قدرات تحليل البيانات المتقدمة لدينا. نحن نحول البيانات الخام إلى رؤى قابلة للتطبيق تتناسب مع احتياجات عملك.",
+  "دعم عملاء آلي على مدار الساعة: عزز رضا العملاء مع حلول الدردشة الذكية التي تقدم المساعدة الفورية، مما يضمن أن يشعر عملاؤك دائمًا بالتقدير.",
+  "تجارب عملاء مخصصة: تفاعل مع جمهورك من خلال تفاعلات مخصصة بناءً على تفضيلاتهم، مما يعزز الولاء وزيادة الاحتفاظ بالعملاء.",
   "مع أوتوميت، نقوم بتحويل أفكارك إلى محتوى يلهم العملاء ويعزز من تواجدك الرقمي.",
-  "دعنا نساعدك على تحقيق رؤيتك!"
+  "طور عملك الآن مع أوتوميت!"
 ],
-      "image": "/src/assets/Services/Content.png"
+      "image": "/src/assets/Services/Ai-automation.png"
     }
   ]
 }

@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Logo from '../public/data/icon/autoMATE.png';
+import Logo from '../public/icon/autoMATE.png';
 import { useLanguage } from './LanguageContext';
-import { FaBars, FaChevronDown, FaFacebook, FaInstagram, FaLinkedin, FaPen, FaBullhorn, FaRobot, FaShareAlt, FaClipboardList, FaCode } from 'react-icons/fa';
+import { FaBars, FaChevronDown, FaFacebook, FaInstagram, FaLinkedin, FaBullhorn, FaRobot, FaShareAlt, FaClipboardList, FaCode } from 'react-icons/fa';
 import { Link, useLocation } from 'react-router-dom';
 import ScrollToTop from './ScrollToTop';
 import { MdLocationPin } from "react-icons/md";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FaGlobe } from "react-icons/fa";
+import { AiOutlineCloudServer } from 'react-icons/ai';
 
 const Layout = ({ children }) => {
   const { currentLang, setCurrentLang, isRTL, translations } = useLanguage();
@@ -32,8 +33,8 @@ const Layout = ({ children }) => {
   };
 
   const serviceIcons = {
-    'Content Creation': <FaPen className="inline w-5 h-5 mr-2" />,
-    'إنشاء المحتوى': <FaPen className="inline w-5 h-5 mr-2" />,
+    'AI Automation': <AiOutlineCloudServer className="inline w-5 h-5 mr-2" />,
+    'اتمتة الاعمال بالذكاء الاصطناعي': <AiOutlineCloudServer className="inline w-5 h-5 mr-2" />,
     'Marketing Campaigns': <FaBullhorn className="inline w-5 h-5 mr-2" />,
     'حملات تسويقية': <FaBullhorn className="inline w-5 h-5 mr-2" />,
     'AI Customer Service Bot': <FaRobot className="inline w-5 h-5 mr-2" />,
@@ -313,15 +314,19 @@ const Layout = ({ children }) => {
         <ul className="space-y-2 text-gray-500">
           <li className={currentLang === 'ar' ? 'font-arabic' : ''}>
             <MdLocationPin className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
-            {currentLang === 'ar' ? '123 شارع الابتكار، مدينة التقنية' : '123 Innovation Drive, Tech City'}
+            {currentLang === 'ar' ? ' سوريا، دمشق' : 'Syria, Damascus'}
           </li>
           <li>
             <FaPhoneVolume className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
-            +1 (555) 123-4567
+            +971 (055) 323-3469
+          </li>
+          <li>
+            <FaPhoneVolume className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
+            +963 (095) 929-6714
           </li>
           <li>
             <MdEmail className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
-            info@automate.com
+            Support@automate-sy.com
           </li>
         </ul>
       </div>

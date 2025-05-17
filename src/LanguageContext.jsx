@@ -50,7 +50,7 @@ export const LanguageProvider = ({ children }) => {
         bookButton: 'Book Free Consultation',
         exploreButton: 'Explore Our Services'
       },
-      services: ['Marketing Campaigns', 'AI Customer Service Bot', 'Social Media Management', 'Startup Business Plans', 'Web Development', 'Content Creation']
+      services: ['Marketing Campaigns', 'AI Customer Service Bot', 'Social Media Management', 'Startup Business Plans', 'Web Development', 'AI Automation']
     },
     ar: {
       footer: {
@@ -67,7 +67,7 @@ export const LanguageProvider = ({ children }) => {
         bookButton: 'احجز استشارة مجانية',
         exploreButton: 'استكشف خدماتنا'
       },
-      services: ['حملات تسويقية', 'روبوت خدمة العملاء الذكي', 'إدارة وسائل التواصل الاجتماعي', 'خطط الأعمال للشركات الناشئة', 'تطوير المواقع الإلكترونية', 'إنشاء المحتوى']
+      services: ['حملات تسويقية', 'روبوت خدمة العملاء الذكي', 'إدارة وسائل التواصل الاجتماعي', 'خطط الأعمال للشركات الناشئة', 'تطوير المواقع الإلكترونية', 'اتمتة الاعمال بالذكاء الاصطناعي']
     }
   };
 
