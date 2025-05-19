@@ -11,8 +11,8 @@ function Step1({ meetingType, setMeetingType, setCurrentStep, meetingTypes }) {
         {meetingTypes.map((type, idx) => (
           <button
             key={idx}
-            className={`block w-full border p-2 rounded text-left transition hover:bg-indigo-100 ${
-              meetingType.name === type.name ? 'bg-indigo-600 text-white' : 'bg-white'
+            className={`block w-full border p-2 rounded text-left transition hover:bg-slate-100 ${
+              meetingType.name === type.name ? 'bg-[#006699] text-white' : 'bg-white'
             }`}
             onClick={() => {
               setMeetingType(type);
@@ -45,7 +45,7 @@ function Step2({ calendarDays, selectedDate, setSelectedDate, setCurrentStep, ha
           <button
             key={idx}
             disabled={day.disabled}
-            className={`p-2 border rounded ${day.disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} ${selectedDate?.getDate() === day.day && !day.disabled ? 'bg-indigo-600 text-white' : ''}`}
+            className={`p-2 border rounded ${day.disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} ${selectedDate?.getDate() === day.day && !day.disabled ? 'bg-[#006699] text-[#006699] border-2' : ''}`}
             onClick={() => {
               setSelectedDate(day.date);
               setCurrentStep(3);
@@ -75,7 +75,7 @@ function Step3({ selectedDate, timeSlots, selectedTime, setSelectedTime, formDat
           <button
             key={idx}
             disabled={slot.disabled}
-            className={`p-2 border rounded text-sm ${slot.disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} ${selectedTime === slot.time ? 'border-indigo-600 text-indigo-600' : ''}`}
+            className={`p-2 border rounded text-sm ${slot.disabled ? 'bg-gray-200 cursor-not-allowed' : 'bg-white'} ${selectedTime === slot.time ? 'border-[#006699] text-[#006699] border-2' : ''}`}
             onClick={() => setSelectedTime(slot.time)}
           >
             {slot.time}
@@ -89,7 +89,7 @@ function Step3({ selectedDate, timeSlots, selectedTime, setSelectedTime, formDat
         <input type="email" name="email" placeholder="Email" className="w-full border p-2 rounded" onChange={handleFormChange} value={formData.email} required />
         <input type="tel" name="phone" placeholder="Phone" className="w-full border p-2 rounded" onChange={handleFormChange} value={formData.phone} required />
         <textarea name="notes" placeholder="Notes (optional)" className="w-full border p-2 rounded" onChange={handleFormChange} value={formData.notes} />
-        <button type="submit" className="bg-indigo-600 text-white p-2 rounded w-full" disabled={isLoading}>{isLoading ? 'Booking...' : 'Book Appointment'}</button>
+        <button type="submit" className="bg-[#006699] text-white p-2 rounded w-full hover:bg-[#0177aa]" disabled={isLoading}>{isLoading ? 'Booking...' : 'Book Appointment'}</button>
       </form>
     </div>
   );
@@ -97,9 +97,14 @@ function Step3({ selectedDate, timeSlots, selectedTime, setSelectedTime, formDat
 
 
 function Step4({ bookingData, resetBooking, setCurrentStep }) {
-  console.log(bookingData);
-  if(!bookingData || Object.keys(bookingData).length === 0 || Object.values(bookingData).some(value => value === null || value === undefined || value === '')){
-    alert('please fill out the form');
+  if (
+    !bookingData ||
+    Object.keys(bookingData).length === 0 ||
+    Object.entries(bookingData).some(([key, value]) => 
+      key !== 'notes' && (value === null || value === undefined || value === '')
+    )
+  ) {
+    alert('Please fill out the form');
     setCurrentStep(3);
   }
 
@@ -114,8 +119,8 @@ function Step4({ bookingData, resetBooking, setCurrentStep }) {
         <p><strong>Time:</strong> {bookingData.time}</p>
         <p><strong>Phone:</strong> {bookingData.phone}</p>
       </div>
-      <button onClick={resetBooking} className="mt-6 w-full bg-indigo-600 text-white p-2 rounded">Book Another</button>
-      <Link to={'/'} className="block mt-6 w-full border-2 border-indigo-600 text-indigo-600 p-2 rounded">Go to Home</Link>
+      <button onClick={resetBooking} className="mt-6 w-full bg-[#006699] text-white p-2 rounded hover:bg-[#0177aa] cursor-pointer">Book Another</button>
+      <Link to={'/'} className="block mt-6 w-full border-2 border-[#006699] text-[#006699] p-2 rounded">Go to Home</Link>
     </div>
   );
 }
@@ -138,7 +143,7 @@ function MultiProgressBar({ totalSteps, currentStep, steps, setCurrentStep }){
               >
                 <div className="h-0.5 w-full bg-gray-200">
                   <div
-                    className="h-0.5 bg-blue-600 transition-all duration-300 ease-in-out"
+                    className="h-0.5 bg-[#006699] transition-all duration-300 ease-in-out"
                     style={{
                       width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%`,
                     }}
@@ -161,9 +166,9 @@ function MultiProgressBar({ totalSteps, currentStep, steps, setCurrentStep }){
                       className={`relative flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-200 ease-in-out
                       ${
                         step.id < currentStep
-                          ? "border-blue-600 bg-blue-600 text-white"
+                          ? "border-[#006699] bg-[#006699] text-white"
                           : step.id === currentStep
-                            ? "border-blue-600 bg-white text-blue-600"
+                            ? "border-[#006699] bg-white text-[#006699]"
                             : "border-gray-300 bg-white text-gray-400"
                       }`}
                     >
@@ -176,7 +181,7 @@ function MultiProgressBar({ totalSteps, currentStep, steps, setCurrentStep }){
                     <div
                       className={`mt-2 text-sm font-medium ${
                         step.id === currentStep
-                          ? "text-blue-600"
+                          ? "text-[#006699"
                           : step.id < currentStep
                             ? "text-gray-900"
                             : "text-gray-500"
@@ -276,17 +281,17 @@ function MainForm() {
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !selectedTime){alert('Please fill in all required fields, including meeting type.'); return};
     setIsLoading(true);
     try {
-      await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          meetingType: meetingType?.name,
-          date: selectedDate.toLocaleDateString('en-US'),
-          time: selectedTime,
-          notes: formData.notes || "No notes provided"
-        })
-      });
+      // await fetch(GOOGLE_SCRIPT_URL, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     ...formData,
+      //     meetingType: meetingType?.name,
+      //     date: selectedDate.toLocaleDateString('en-US'),
+      //     time: selectedTime,
+      //     notes: formData.notes || "No notes provided"
+      //   })
+      // });
       setBookingData({
         ...formData,
         meetingType: meetingType?.name,
