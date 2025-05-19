@@ -1,5 +1,7 @@
 // App.jsx
 import { useState, useEffect } from 'react';
+import { FaCheck } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 function Step1({ meetingType, setMeetingType, setCurrentStep, meetingTypes }) {
   return (
@@ -94,21 +96,100 @@ function Step3({ selectedDate, timeSlots, selectedTime, setSelectedTime, formDat
 }
 
 
-function Step4({ bookingData, resetBooking }) {
+function Step4({ bookingData, resetBooking, setCurrentStep }) {
+  console.log(bookingData);
+  if(!bookingData || Object.keys(bookingData).length === 0 || Object.values(bookingData).some(value => value === null || value === undefined || value === '')){
+    alert('please fill out the form');
+    setCurrentStep(3);
+  }
+
   return (
     <div className="text-center">
       <h2 className="text-2xl font-bold mb-2">Booking Confirmed!</h2>
       <p className="mb-4 text-green-600">Your booking has been saved successfully.</p>
-      <div className="border mt-4 p-4 text-left inline-block bg-gray-50 rounded-md shadow-md">
+      <div className="border mt-4 p-4 text-left flex flex-col space-y-4 justify-center items-center bg-gray-50 rounded-md shadow-md">
         <p><strong>Name:</strong> {bookingData.firstName} {bookingData.lastName}</p>
         <p><strong>Meeting Type:</strong> {bookingData.meetingType}</p>
         <p><strong>Date:</strong> {bookingData.date}</p>
         <p><strong>Time:</strong> {bookingData.time}</p>
         <p><strong>Phone:</strong> {bookingData.phone}</p>
       </div>
-      <button onClick={resetBooking} className="mt-6 bg-indigo-600 text-white p-2 rounded">Book Another</button>
+      <button onClick={resetBooking} className="mt-6 w-full bg-indigo-600 text-white p-2 rounded">Book Another</button>
+      <Link to={'/'} className="block mt-6 w-full border-2 border-indigo-600 text-indigo-600 p-2 rounded">Go to Home</Link>
     </div>
   );
+}
+
+function MultiProgressBar({ totalSteps, currentStep, steps, setCurrentStep }){
+    const goToStep = (step) => {
+    // Only allow going to completed steps or the next step
+    if (step <= currentStep || step === currentStep + 1) {
+      setCurrentStep(step);
+    }
+  };
+
+  return (
+     <div className="mb-12" role="navigation" aria-label="Form progress">
+            <div className="relative">
+              {/* Progress line */}
+              <div
+                className="absolute inset-0 flex items-center"
+                aria-hidden="true"
+              >
+                <div className="h-0.5 w-full bg-gray-200">
+                  <div
+                    className="h-0.5 bg-blue-600 transition-all duration-300 ease-in-out"
+                    style={{
+                      width: `${((currentStep - 1) / (totalSteps - 1)) * 100}%`,
+                    }}
+                  ></div>
+                </div>
+              </div>
+
+              {/* Step indicators */}
+              <div className="relative flex justify-between">
+                {steps.map((step) => (
+                  <button
+                    key={step.id}
+                    onClick={() => goToStep(step.id)}
+                    className={`cursor-pointer flex flex-col items-center ${step.id <= currentStep ? "cursor-pointer" : "cursor-not-allowed"}`}
+                    disabled={step.id > currentStep + 1}
+                    aria-current={step.id === currentStep ? "step" : undefined}
+                    aria-label={`${step.label}, ${step.id < currentStep ? "completed" : step.id === currentStep ? "current" : "upcoming"} step ${step.id} of ${totalSteps}`}
+                  >
+                    <div
+                      className={`relative flex items-center justify-center w-10 h-10 rounded-full border-2 transition-all duration-200 ease-in-out
+                      ${
+                        step.id < currentStep
+                          ? "border-blue-600 bg-blue-600 text-white"
+                          : step.id === currentStep
+                            ? "border-blue-600 bg-white text-blue-600"
+                            : "border-gray-300 bg-white text-gray-400"
+                      }`}
+                    >
+                      {step.id < currentStep ? (
+                        <FaCheck aria-hidden="true" />
+                      ) : (
+                        <span>{step.id}</span>
+                      )}
+                    </div>
+                    <div
+                      className={`mt-2 text-sm font-medium ${
+                        step.id === currentStep
+                          ? "text-blue-600"
+                          : step.id < currentStep
+                            ? "text-gray-900"
+                            : "text-gray-500"
+                      }`}
+                    >
+                      {step.label}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+  )
 }
 
 
@@ -127,6 +208,7 @@ function MainForm() {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [calendarDays, setCalendarDays] = useState([]);
   const [timeSlots, setTimeSlots] = useState([]);
+  const totalSteps = 4;
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -222,6 +304,13 @@ function MainForm() {
     }
   };
 
+   const steps = [
+    { id: 1, label: "Meeting Type" },
+    { id: 2, label: "Date" },
+    { id: 3, label: "Time & Info" },
+    { id: 4, label: "Confirmation" },
+  ];
+
   const resetBooking = () => {
     setCurrentStep(1);
     setMeetingType('');
@@ -234,10 +323,11 @@ function MainForm() {
   return (
     <div className="p-6 pt-30 max-w-xl mx-auto font-sans">
       <h1 className="text-2xl font-bold mb-4">Appointment Booking</h1>
+      <MultiProgressBar totalSteps={totalSteps} currentStep={currentStep} steps={steps} setCurrentStep={setCurrentStep} />
       {currentStep === 1 && <Step1 meetingType={meetingType} setMeetingType={setMeetingType} setCurrentStep={setCurrentStep} meetingTypes={meetingTypes} />}
       {currentStep === 2 && <Step2 calendarDays={calendarDays} selectedDate={selectedDate} setSelectedDate={setSelectedDate} setCurrentStep={setCurrentStep} handlePrevMonth={handlePrevMonth} handleNextMonth={handleNextMonth} currentMonth={currentMonth} currentYear={currentYear} />}
       {currentStep === 3 && <Step3 selectedDate={selectedDate} timeSlots={timeSlots} selectedTime={selectedTime} setSelectedTime={setSelectedTime} formData={formData} handleFormChange={handleFormChange} handleSubmit={handleSubmit} isLoading={isLoading} />}
-      {currentStep === 4 && <Step4 bookingData={bookingData} resetBooking={resetBooking} />}
+      {currentStep === 4 && <Step4 bookingData={bookingData} resetBooking={resetBooking} setCurrentStep={setCurrentStep} />}
     </div>
   );
 }
