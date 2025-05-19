@@ -281,17 +281,17 @@ function MainForm() {
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone || !selectedTime){alert('Please fill in all required fields, including meeting type.'); return};
     setIsLoading(true);
     try {
-      // await fetch(GOOGLE_SCRIPT_URL, {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({
-      //     ...formData,
-      //     meetingType: meetingType?.name,
-      //     date: selectedDate.toLocaleDateString('en-US'),
-      //     time: selectedTime,
-      //     notes: formData.notes || "No notes provided"
-      //   })
-      // });
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...formData,
+          meetingType: meetingType?.name,
+          date: selectedDate.toLocaleDateString('en-US'),
+          time: selectedTime,
+          notes: formData.notes || "No notes provided"
+        })
+      });
       setBookingData({
         ...formData,
         meetingType: meetingType?.name,
