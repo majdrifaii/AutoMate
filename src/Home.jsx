@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import services from '../public/data/services.json';
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
-import { FaArrowLeft, FaArrowRight, FaCalendarCheck, FaCheck, FaGift, FaChevronUp, FaChevronDown } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaCalendarCheck, FaCheck, FaGift, FaChevronUp, FaChevronDown, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 // Custom media query hook
 function useMediaQuery(query) {
@@ -38,17 +38,31 @@ const Home = () => {
     setActiveAccordion(activeAccordion === index ? null : index);
 };
 
-  const Settings = {
-    dots: false,
-    arrows: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    pauseOnHover: true,
-  };
+const CustomPrevArrow = ({ className, onClick }) => (
+  <div className={`${className} slick-prev`} onClick={onClick}>
+    <FaChevronLeft className="text-black text-3xl hidden md:block" />
+  </div>
+);
+
+const CustomNextArrow = ({ className, onClick }) => (
+  <div className={`${className} slick-next`} onClick={onClick}>
+    <FaChevronRight className="text-black text-3xl hidden md:block" />
+  </div>
+);
+
+const Settings = {
+  dots: false,
+  arrows: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  pauseOnHover: true,
+  prevArrow: <CustomPrevArrow />,
+  nextArrow: <CustomNextArrow />,
+};
 
   const isLargeScreen = useMediaQuery("(min-width: 1025px)");
 
@@ -90,10 +104,10 @@ const Home = () => {
               </p>
             </div>
             <div className={`flex flex-wrap gap-4 ${isRTL ? 'justify-end' : ''}`}>
-              <Link to={'form'} className="bg-[#01C38D] hover:bg-[#00A677] text-white px-8 py-3 rounded-md transition-colors duration-200 cursor-pointer whitespace-nowrap">
+              <a href='https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2IsXo5LnBXiGkTprtr71muP8Ab_FJQMf3Z4OvujET5LGdfDK-X6HB6UCeopXV55Vavu0jlTTxQ' target='_blank' className="bg-[#01C38D] hover:bg-[#00A677] text-white px-8 py-3 rounded-md transition-colors duration-200 cursor-pointer whitespace-nowrap">
                 <FaCalendarCheck className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 {translations[currentLang].hero.bookButton}
-              </Link>
+              </a>
               <button
                 className="bg-white text-[#0051B6] px-8 py-3 rounded-md transition-colors duration-200 hover:bg-gray-100 cursor-pointer whitespace-nowrap"
                 onClick={scrollToService}
@@ -289,10 +303,10 @@ const Home = () => {
               </div>
             </div>
             <div className="flex flex-wrap justify-center gap-6">
-              <Link to={'form'} className="bg-white text-secondary px-6 py-4 rounded-md hover:bg-gray-200 transition-colors duration-200 text-lg font-semibold whitespace-nowrap cursor-pointer">
+              <a href='https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ2IsXo5LnBXiGkTprtr71muP8Ab_FJQMf3Z4OvujET5LGdfDK-X6HB6UCeopXV55Vavu0jlTTxQ' target='_blank' className="bg-white text-secondary px-6 py-4 rounded-md hover:bg-gray-200 transition-colors duration-200 text-lg font-semibold whitespace-nowrap cursor-pointer">
                 <FaCalendarCheck className={`inline ${isRTL ? 'ml-2' : 'mr-2'}`} />
                 {currentLang === 'ar' ? 'احجز استشارة مجانية' : 'Book a Free Consultant'}
-              </Link>
+              </a>
             </div>
           </div>
         </div>

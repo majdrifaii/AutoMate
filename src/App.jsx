@@ -23,7 +23,7 @@ function App() {
         <Route path='service/:name/:id' element={<Service />} />
         <Route path='blogs' element={<Blogs />} />
         <Route path='blogs/:id' element={<Blog />} />
-        <Route path='form' element={<MainForm />} />
+        {/* <Route path='form' element={<MainForm />} /> */}
         <Route path='*' element={<NotFound/>} />
       </Routes>
       </Layout>
